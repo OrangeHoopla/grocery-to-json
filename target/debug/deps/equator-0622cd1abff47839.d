@@ -1,0 +1,12 @@
+/Users/orange/grocery-to-json/target/debug/deps/libequator-0622cd1abff47839.rmeta: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/decompose.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/by_val.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/debug.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/sized.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/structures.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/traits.rs
+
+/Users/orange/grocery-to-json/target/debug/deps/equator-0622cd1abff47839.d: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/decompose.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/by_val.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/debug.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/sized.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/structures.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/traits.rs
+
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/lib.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/decompose.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/by_val.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/debug.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/spec/sized.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/structures.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/equator-0.4.2/src/traits.rs:

@@ -1,0 +1,11 @@
+/Users/orange/grocery-to-json/target/debug/deps/libtinyvec-2276a071525c5883.rmeta: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/array.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/array/generated_impl.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/arrayvec.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/arrayvec_drain.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/slicevec.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/tinyvec.rs
+
+/Users/orange/grocery-to-json/target/debug/deps/tinyvec-2276a071525c5883.d: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/array.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/array/generated_impl.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/arrayvec.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/arrayvec_drain.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/slicevec.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/tinyvec.rs
+
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/lib.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/array.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/array/generated_impl.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/arrayvec.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/arrayvec_drain.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/slicevec.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.9.0/src/tinyvec.rs:

@@ -1,0 +1,11 @@
+/Users/orange/grocery-to-json/target/debug/deps/libpest_generator-82fe4c36d4da6bcb.rmeta: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/macros.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/docs.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/generator.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/parse_derive.rs
+
+/Users/orange/grocery-to-json/target/debug/deps/libpest_generator-82fe4c36d4da6bcb.rlib: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/macros.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/docs.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/generator.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/parse_derive.rs
+
+/Users/orange/grocery-to-json/target/debug/deps/pest_generator-82fe4c36d4da6bcb.d: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/macros.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/docs.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/generator.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/parse_derive.rs
+
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/lib.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/macros.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/docs.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/generator.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.8.1/src/parse_derive.rs:

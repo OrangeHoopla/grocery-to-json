@@ -1,0 +1,12 @@
+/Users/orange/grocery-to-json/target/debug/deps/libtinystr-2c53f52f4f93c8b0.rmeta: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/macros.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/ascii.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/asciibyte.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/error.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/int_ops.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/unvalidated.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/ule.rs
+
+/Users/orange/grocery-to-json/target/debug/deps/tinystr-2c53f52f4f93c8b0.d: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/macros.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/ascii.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/asciibyte.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/error.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/int_ops.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/unvalidated.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/ule.rs
+
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/lib.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/macros.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/ascii.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/asciibyte.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/error.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/int_ops.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/unvalidated.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinystr-0.8.1/src/ule.rs:

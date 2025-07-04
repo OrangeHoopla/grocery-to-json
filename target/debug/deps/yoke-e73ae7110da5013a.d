@@ -1,0 +1,13 @@
+/Users/orange/grocery-to-json/target/debug/deps/libyoke-e73ae7110da5013a.rmeta: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/cartable_ptr.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/either.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/erased.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/kinda_sorta_dangling.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/macro_impls.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/yoke.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/yokeable.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/zero_from.rs
+
+/Users/orange/grocery-to-json/target/debug/deps/yoke-e73ae7110da5013a.d: /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/lib.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/cartable_ptr.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/either.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/erased.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/kinda_sorta_dangling.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/macro_impls.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/yoke.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/yokeable.rs /Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/zero_from.rs
+
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/lib.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/cartable_ptr.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/either.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/erased.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/kinda_sorta_dangling.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/macro_impls.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/yoke.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/yokeable.rs:
+/Users/orange/.cargo/registry/src/index.crates.io-6f17d22bba15001f/yoke-0.8.0/src/zero_from.rs:
