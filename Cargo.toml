@@ -18,3 +18,6 @@ chrono = { version = "0.4.39", features = ["serde"] }
 serde = { version = "1.0.204", features = ["derive"] }
 tower-http = { version = "0.6.2", features = ["cors", "trace"] }
 config = "0.15.11"
+
+[env]
+MONGODB_URI = "value"

@@ -1,18 +1,20 @@
 use axum::{extract::DefaultBodyLimit, Router};
+use bson::doc;
+use std::env;
 use clap::Parser;
-use grocery_to_json::api;
+use grocery_to_json::{api, dao::mongo};
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 
-/// Simple program to greet a person
+
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    /// Name of the person to greet
+    /// if present become a service
     #[arg(short, long, default_value_t = false)]
     server: bool,
 
-    /// Number of times to greet
-    #[arg(short, long)]
+    /// file to parse locally
+    #[arg(short, long, default_value_t = ("image.png".to_string()))]
     file: String,
 }
 
@@ -23,6 +25,7 @@ const ADDRESS: &str = "0.0.0.0";
 async fn main() {
     let args: Args = Args::parse();
 
+    // run as server
     if args.server {
         let app = Router::new()
             .nest_service("/api", api::central::get_routes())
@@ -36,7 +39,17 @@ async fn main() {
 
         println!("Server Starting");
         axum::serve(listener, app).await.unwrap();
-    } else {
-        println!("{}", args.file)
+    } 
+    
+    // TODO run against single file
+    else {
+        println!("{}", args.file);
+        let test = mongo::MongoConnection::get_collection("Entries");
+        println!("{}", args.file);
+        let wow = test.client().await.unwrap().find_one(doc! {}).await.unwrap();
+        println!("{}", args.file);
+        
+        println!("{:?}", wow);
+        
     }
 }
