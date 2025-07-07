@@ -1,10 +1,9 @@
 use axum::{extract::DefaultBodyLimit, Router};
 use bson::doc;
-use std::env;
 use clap::Parser;
 use grocery_to_json::{api, dao::mongo};
+use std::env;
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
-
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -39,17 +38,21 @@ async fn main() {
 
         println!("Server Starting");
         axum::serve(listener, app).await.unwrap();
-    } 
-    
+    }
     // TODO run against single file
     else {
         println!("{}", args.file);
         let test = mongo::MongoConnection::get_collection("Entries");
         println!("{}", args.file);
-        let wow = test.client().await.unwrap().find_one(doc! {}).await.unwrap();
+        let wow = test
+            .client()
+            .await
+            .unwrap()
+            .find_one(doc! {})
+            .await
+            .unwrap();
         println!("{}", args.file);
-        
+
         println!("{:?}", wow);
-        
     }
 }
