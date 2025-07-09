@@ -1,11 +1,13 @@
-use crate::dao::models::GroceryList;
+
 use bson::{doc, Document};
 use chrono::Utc;
 use mongodb::{Client, Collection};
 use regex::Regex;
 
+use crate::dao::models::Reciept;
+
 // this will need a sub function as to seperate different regex and additional fields
-pub fn parse(raw_reciept: String) -> GroceryList {
+pub fn parse(raw_reciept: String) -> Reciept {
     // get items
     let re = Regex::new(r"(?m)^(.*) \$([0-9\.]+).*[F\|JT]\s").unwrap();
     let re_total = Regex::new(r"Total.*:.*\$([0-9\.]+)").unwrap();
@@ -30,7 +32,7 @@ pub fn parse(raw_reciept: String) -> GroceryList {
     address.push(' ');
     address.push_str(&addr[3]);
 
-    let reciept: GroceryList = GroceryList {
+    let reciept: Reciept = Reciept {
         store: "Whole Foods".to_owned(),
         address: address,
         total: real_total[1].parse::<f64>().unwrap_or(0.0),
@@ -43,15 +45,3 @@ pub fn parse(raw_reciept: String) -> GroceryList {
     return reciept;
 }
 
-pub async fn _mongo_test(_raw_reciept: String) -> mongodb::error::Result<()> {
-    let client_uri = "mongodb://mongo:27017";
-    let client = Client::with_uri_str(&client_uri).await?;
-
-    let my_coll: Collection<Document> = client.database("test").collection("Entries");
-
-    let result = my_coll.find_one(doc! {}).await?;
-
-    println!("{:#?}", result.unwrap());
-
-    Ok(())
-}

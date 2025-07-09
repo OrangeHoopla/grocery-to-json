@@ -73,24 +73,24 @@ returning the id it was saved as to be called upon later
  */
 async fn upload(headers: HeaderMap, mut multipart: Multipart) -> impl IntoResponse {
     let id = Uuid::new_v4();
-    let a = headers.get("store").unwrap().to_str().unwrap();
+    // let a = headers.get("store").unwrap().to_str().unwrap();
 
     while let Some(field) = multipart.next_field().await.unwrap() {
         let _name = field.name().unwrap().to_string();
         let data = field.bytes().await.unwrap();
-        fs::write(format!("images/{}", id), data).expect("Error writing Image to File");
+        fs::write(format!("{}", id), data).expect("Error writing Image to File");
     }
 
-    let client_uri = "mongodb://mongo:27017";
-    let client = Client::with_uri_str(&client_uri).await;
-    let my_coll: Collection<Document> = client.unwrap().database("test").collection("Images");
+    // let client_uri = "mongodb://mongo:27017";
+    // let client = Client::with_uri_str(&client_uri).await;
+    // let my_coll: Collection<Document> = client.unwrap().database("test").collection("Images");
 
-    let rec = doc! {
-        "id": id.to_string(),
-        "entryDate": Utc::now(),
-        "store": a
-    };
-    let _test = my_coll.insert_one(rec).await;
+    // let rec = doc! {
+    //     "id": id.to_string(),
+    //     "entryDate": Utc::now(),
+    //     "store": "test"
+    // };
+    // let _test = my_coll.insert_one(rec).await;
     // println!("{:?}",test);
 
     let mut headers = HeaderMap::new();
