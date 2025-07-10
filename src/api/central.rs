@@ -5,12 +5,12 @@ use axum::{
     routing::{get, post},
     Json, Router,
 };
-use bson::{doc, Document};
 use chrono::Utc;
-use mongodb::{Client, Collection};
 use serde_json::{json, Value};
 use std::fs;
 use uuid::Uuid;
+
+use crate::dao::image_dao::Image;
 
 // use crate::{ocrengines, text_processors::{self, wholefoods_processor::GroceryList}};
 
@@ -71,32 +71,25 @@ async fn json(req: Request) -> Json<Value> {
 Takes Uploaded file and stores it locally
 returning the id it was saved as to be called upon later
  */
-async fn upload(headers: HeaderMap, mut multipart: Multipart) -> impl IntoResponse {
+async fn upload(_headers: HeaderMap, mut multipart: Multipart) -> impl IntoResponse {
     let id = Uuid::new_v4();
     // let a = headers.get("store").unwrap().to_str().unwrap();
 
     while let Some(field) = multipart.next_field().await.unwrap() {
         let _name = field.name().unwrap().to_string();
         let data = field.bytes().await.unwrap();
-        fs::write(format!("{}", id), data).expect("Error writing Image to File");
+        fs::write(format!("images/{}", id), data).expect("Error writing Image to File");
     }
 
-    // let client_uri = "mongodb://mongo:27017";
-    // let client = Client::with_uri_str(&client_uri).await;
-    // let my_coll: Collection<Document> = client.unwrap().database("test").collection("Images");
-
-    // let rec = doc! {
-    //     "id": id.to_string(),
-    //     "entryDate": Utc::now(),
-    //     "store": "test"
-    // };
-    // let _test = my_coll.insert_one(rec).await;
-    // println!("{:?}",test);
+    let test = Image {
+        file_name: id.to_string(),
+        created: Utc::now(),
+    };
+    Image::save(test).await;
 
     let mut headers = HeaderMap::new();
     headers.insert(header::CONTENT_TYPE, "text/plain".parse().unwrap());
     (headers, id.to_string())
-    // StatusCode::OK;
 }
 
 // async fn _parse_file_raw(Path(id): Path<String>) -> impl IntoResponse {

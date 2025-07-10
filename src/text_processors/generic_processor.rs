@@ -1,11 +1,11 @@
 use crate::dao::models::{RawText, Reciept, RecieptDAO};
 
-struct GenericProcessor {
-    result: Reciept
+struct _GenericProcessor {
+    result: Reciept,
 }
 
-impl RecieptDAO for GenericProcessor {
-    fn get_store_name(name: &'static str) -> String {
+impl RecieptDAO for _GenericProcessor {
+    fn get_store_name(_name: &'static str) -> String {
         todo!()
     }
 
@@ -25,7 +25,7 @@ impl RecieptDAO for GenericProcessor {
         todo!()
     }
 
-    fn get_reciept(raw_text: RawText) -> Reciept {
+    fn get_reciept(_raw_text: RawText) -> Reciept {
         todo!()
     }
 }

@@ -1,7 +1,3 @@
-
-use bson::{doc, Document};
-use chrono::Utc;
-use mongodb::{Client, Collection};
 use regex::Regex;
 
 use crate::dao::models::Reciept;
@@ -32,7 +28,7 @@ pub fn parse(raw_reciept: String) -> Reciept {
     address.push(' ');
     address.push_str(&addr[3]);
 
-    let reciept: Reciept = Reciept {
+    let _reciept: Reciept = Reciept {
         store: "Whole Foods".to_owned(),
         address: address,
         total: real_total[1].parse::<f64>().unwrap_or(0.0),
@@ -42,6 +38,5 @@ pub fn parse(raw_reciept: String) -> Reciept {
         transaction_date: todo!(),
     };
 
-    return reciept;
+    // return reciept;
 }
-
