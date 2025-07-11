@@ -20,7 +20,7 @@ pub fn get_routes() -> Router {
         .route("/upload", post(upload))
         .route("/", get(handler))
     // .route("/{id}", get(parse_file))
-        // .route("/submit/{id}", post(submit_entry))
+        .route("/submit/{id}", post(submit_entry))
     // .route("/all", get(getall))
 }
 
@@ -141,20 +141,29 @@ Takes in id of uploaded file for it to be proccessed
  * Takes in json for GroceryList item
  * and converts it to be submitted
  */
-// async  fn submit_entry(Path(id): Path<String>) -> Json<RawText> {
+async  fn submit_entry(Path(id): Path<String>) -> Json<RawText> {
 
-//     let result = tesseract_processor::result(id);
+    let result = tesseract_processor::result(id);
 
-//     let gret = RawText {
-//         raw_text: result,
-//         created: Utc::now(),
-//         image_processor: "tesseract_processor".to_owned(),
-//     };
+    let gret = RawText {
+        raw_text: result.clone(),
+        created: Utc::now(),
+        image_processor: "tesseract_processor".to_owned(),
+    };
 
-//     let mut headers = HeaderMap::new();
-//     headers.insert(header::CONTENT_TYPE, "application/json".parse().unwrap());
-//     Json(gret)
-// }
+    let temp = RawText {
+        raw_text: result.clone(),
+        created: Utc::now(),
+        image_processor: "tesseract_processor".to_owned(),
+    };
+
+
+    RawText::save(gret).await;
+
+    let mut headers = HeaderMap::new();
+    headers.insert(header::CONTENT_TYPE, "application/json".parse().unwrap());
+    Json(temp)
+}
 
 /*
 returns the latest 5 entries into the grocery list
