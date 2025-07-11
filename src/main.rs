@@ -28,7 +28,9 @@ async fn main() {
     let args: Args = Args::parse();
 
     // run as server
+    
     if args.server {
+        println!("Server Starting Before...");
         let app = Router::new()
             .nest_service("/api", api::central::get_routes())
             .layer(DefaultBodyLimit::max(1000000000))
@@ -39,8 +41,8 @@ async fn main() {
             .await
             .unwrap();
 
-        println!("Server Starting");
         axum::serve(listener, app).await.unwrap();
+        println!("Server Starting...");
     }
     // TODO run against single file
     else {

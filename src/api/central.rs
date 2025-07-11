@@ -1,5 +1,5 @@
 use axum::{
-    extract::{Multipart, Request},
+    extract::{Multipart, Path, Request},
     http::{header, HeaderMap},
     response::{Html, IntoResponse},
     routing::{get, post},
@@ -10,7 +10,7 @@ use serde_json::{json, Value};
 use std::fs;
 use uuid::Uuid;
 
-use crate::dao::image_dao::Image;
+use crate::{dao::{image_dao::Image, raw_text_dao::RawText}, image_processors::tesseract_processor};
 
 // use crate::{ocrengines, text_processors::{self, wholefoods_processor::GroceryList}};
 
@@ -20,7 +20,7 @@ pub fn get_routes() -> Router {
         .route("/upload", post(upload))
         .route("/", get(handler))
     // .route("/{id}", get(parse_file))
-    // .route("/submit", post(submit_entry))
+        // .route("/submit/{id}", post(submit_entry))
     // .route("/all", get(getall))
 }
 
@@ -141,17 +141,19 @@ Takes in id of uploaded file for it to be proccessed
  * Takes in json for GroceryList item
  * and converts it to be submitted
  */
-// async  fn submit_entry(Json(payload): Json<GroceryList>) -> impl IntoResponse {
+// async  fn submit_entry(Path(id): Path<String>) -> Json<RawText> {
 
-//     let client_uri = "mongodb://mongo:27017";
-//     let client = Client::with_uri_str(&client_uri).await;
-//     let my_coll: Collection<GroceryList> = client.unwrap()
-//         .database("test")
-//         .collection("Entries");
-//     let _test = my_coll.insert_one(payload).await;
+//     let result = tesseract_processor::result(id);
 
-//     // println!("{:?}",test);
-//     StatusCode::OK;
+//     let gret = RawText {
+//         raw_text: result,
+//         created: Utc::now(),
+//         image_processor: "tesseract_processor".to_owned(),
+//     };
+
+//     let mut headers = HeaderMap::new();
+//     headers.insert(header::CONTENT_TYPE, "application/json".parse().unwrap());
+//     Json(gret)
 // }
 
 /*
