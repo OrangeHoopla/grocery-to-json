@@ -9,10 +9,8 @@ use chrono::Utc;
 use serde_json::{json, Value};
 use std::fs;
 use uuid::Uuid;
+use crate::{dao::{image_dao::Image, raw_text_dao::RawText, reciept_dao::Reciept}, image_processors::tesseract_processor, text_processors::{self, generic_processor::{self, GenericProcessor}}};
 
-use crate::{dao::{image_dao::Image, raw_text_dao::RawText}, image_processors::tesseract_processor};
-
-// use crate::{ocrengines, text_processors::{self, wholefoods_processor::GroceryList}};
 
 pub fn get_routes() -> Router {
     Router::new()
@@ -73,7 +71,6 @@ returning the id it was saved as to be called upon later
  */
 async fn upload(_headers: HeaderMap, mut multipart: Multipart) -> impl IntoResponse {
     let id = Uuid::new_v4();
-    // let a = headers.get("store").unwrap().to_str().unwrap();
 
     while let Some(field) = multipart.next_field().await.unwrap() {
         let _name = field.name().unwrap().to_string();
@@ -85,7 +82,7 @@ async fn upload(_headers: HeaderMap, mut multipart: Multipart) -> impl IntoRespo
         file_name: id.to_string(),
         created: Utc::now(),
     };
-    Image::save(test).await;
+    Image::save(test).await; // needs to be redone as a MongoDb trait that is impl my Image
 
     let mut headers = HeaderMap::new();
     headers.insert(header::CONTENT_TYPE, "text/plain".parse().unwrap());
@@ -138,10 +135,10 @@ Takes in id of uploaded file for it to be proccessed
 // }
 
 /**
- * Takes in json for GroceryList item
- * and converts it to be submitted
+ * Gets String Id and returns JSON either existing entry in Db
+ * or parses it with if needed then saves entry
  */
-async  fn submit_entry(Path(id): Path<String>) -> Json<RawText> {
+async fn submit_entry(Path(id): Path<String>) -> Json<Reciept> {
 
     let result = tesseract_processor::result(id);
 
@@ -157,12 +154,10 @@ async  fn submit_entry(Path(id): Path<String>) -> Json<RawText> {
         image_processor: "tesseract_processor".to_owned(),
     };
 
-
+    let data = GenericProcessor { raw_text: temp };
     RawText::save(gret).await;
 
-    let mut headers = HeaderMap::new();
-    headers.insert(header::CONTENT_TYPE, "application/json".parse().unwrap());
-    Json(temp)
+    Json(data.get_reciept())
 }
 
 /*
@@ -200,8 +195,3 @@ returns the latest 5 entries into the grocery list
 
 // }
 
-#[allow(dead_code)]
-enum Stores {
-    WholeFoods,
-    Aldi,
-}

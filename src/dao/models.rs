@@ -1,17 +1,22 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
-use crate::dao::raw_text_dao::RawText;
 
-#[derive(Debug, Deserialize, Serialize, Default)]
-pub struct Reciept {
-    pub store: String,
-    pub address: String,
-    pub items: Vec<(String, f64)>,
-    pub total: f64,
-    pub created: DateTime<Utc>,
-    pub updated: DateTime<Utc>,
-    pub transaction_date: DateTime<Utc>,
+// #[derive(Debug, Deserialize, Serialize, Default)]
+// pub struct Reciept {
+//     pub store: String,
+//     pub address: String,
+//     pub items: Vec<(String, f64)>,
+//     pub total: f64,
+//     pub created: DateTime<Utc>,
+//     pub updated: DateTime<Utc>,
+//     pub transaction_date: DateTime<Utc>,
+// }
+
+#[allow(dead_code)]
+enum Stores {
+    WholeFoods,
+    Aldi,
 }
 
 // pub trait RecieptDAO {
