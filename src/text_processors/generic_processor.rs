@@ -1,5 +1,6 @@
 use chrono::Utc;
 use regex::Regex;
+use uuid::Uuid;
 
 use crate::dao::{raw_text_dao::RawText, reciept_dao::Reciept};
 
@@ -57,6 +58,7 @@ impl GenericProcessor {
     pub fn get_reciept(&self) -> Reciept {
         
         return Reciept {
+             _id: Uuid::new_v4(),
              store: self.get_store_name(),
              address: self.get_address(self.raw_text.raw_text.clone()),
              items: self.get_items(self.raw_text.raw_text.clone()),

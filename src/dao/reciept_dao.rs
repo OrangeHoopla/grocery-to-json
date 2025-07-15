@@ -3,11 +3,13 @@ use std::env;
 use chrono::{DateTime, Utc};
 use mongodb::Client;
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct Reciept {
+    pub _id: Uuid,
     pub store: String,
     pub address: String,
     pub items: Vec<(String, f64)>,
