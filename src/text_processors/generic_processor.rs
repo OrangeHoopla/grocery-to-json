@@ -2,7 +2,7 @@ use chrono::Utc;
 use regex::Regex;
 use uuid::Uuid;
 
-use crate::dao::{raw_text_dao::RawText, reciept_dao::Reciept};
+use crate::dao::{raw_text_dao::RawText, reciept_dao::{Item, Reciept}};
 
 
 
@@ -45,11 +45,13 @@ impl GenericProcessor {
         return real_total[1].parse::<f64>().unwrap_or(0.0);
     }
 
-    fn get_items(&self, raw_text: String) -> Vec<(String, f64)> {
+    fn get_items(&self, raw_text: String) -> Vec<Item> {
         let re = Regex::new(r"(?m)^(.*) \$([0-9\.]+).*[F\|JT]\s").unwrap();
-        let mut items: Vec<(String, f64)> = Vec::new();
+        let mut items: Vec<Item> = Vec::new();
         for cap in re.captures_iter(&raw_text) {
-            items.push((cap[1].to_owned(), cap[2].parse::<f64>().unwrap_or(0.0)));
+            items.push(Item { name: cap[1].to_owned(), 
+                              cost: cap[2].parse::<f64>().unwrap_or(0.0) });
+            
         }
 
         items
