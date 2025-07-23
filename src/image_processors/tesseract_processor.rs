@@ -13,6 +13,7 @@ pub fn result(image: String) -> String {
     .with_guessed_format().unwrap().decode().unwrap();
 
     let img = Image::from_dynamic_image(&dynamic_image).unwrap();
+    
     let default_args = Args::default();
     let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
 
