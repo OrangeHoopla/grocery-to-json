@@ -1,4 +1,4 @@
-use image::{GenericImageView, ImageBuffer, Luma};
+use image::{DynamicImage, GenericImageView, ImageBuffer, Luma};
 
 fn sobel(input: &ImageBuffer<Luma<u8>, Vec<u8>>) -> ImageBuffer<Luma<u8>, Vec<u8>>
 {
@@ -25,6 +25,7 @@ fn sobel(input: &ImageBuffer<Luma<u8>, Vec<u8>>) -> ImageBuffer<Luma<u8>, Vec<u8
             if mag > 255.0 {
                 mag = 255.0;
             }
+            mag = 255.0 - mag;
 
             buff.put_pixel(i, j, Luma([mag as u8]));
         }
@@ -38,13 +39,17 @@ fn sigma(width: u32, height: u32, blur_modifier: i32) -> f32
     return (((width * height) as f32) / 3630000.0) * blur_modifier as f32;
 }
 
-fn process_frame(path: String, output_path: String, blur_modifier: i32)
+pub fn process_frame(path: String, _output_path: String, blur_modifier: i32) -> DynamicImage
 {
-    let source = image::open(path).unwrap();
-    let (width, height) = source.dimensions();
-    let sigma = sigma(width, height, blur_modifier);
-    let gaussed = source.blur(sigma);
-    let gray = gaussed.to_luma8();
-    let sobeled = sobel(&gray);
-    sobeled.save(output_path).unwrap();
+    let source = image::open(path).unwrap().to_luma8();
+    // let (width, height) = source.dimensions();
+    // let sigma = sigma(width, height, blur_modifier);
+    // let gaussed = source.blur(sigma);
+    // let gray = gaussed.to_luma8();
+    let sobeled = sobel(&source);
+
+    let image: DynamicImage = sobeled.into();
+
+    image
+    // sobeled.save(output_path).unwrap();
 }

@@ -1,12 +1,12 @@
+use std::fs;
+
 use axum::{extract::DefaultBodyLimit, Router};
-use chrono::Utc;
 use clap::Parser;
 use grocery_to_json::{
-    api,
-    dao::{image_dao::Image},
+    api, image_processors::sobel_transform,
 };
+use image::{DynamicImage, ImageReader};
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
-use uuid::Uuid;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -46,33 +46,25 @@ async fn main() {
     }
     // TODO run against single file
     else {
-        print!("Manual run");
-        let test = Image {
-            file_name: Uuid::new_v4().to_string(),
-            created: Utc::now(),
-        };
-        Image::save(test).await;
 
-        // println!("{}", env::var("MONGODB_DB").unwrap().as_str());
+        //edit
+        let result = sobel_transform::process_frame("Scan 18.jpeg".to_string(),"result.jpeg".to_string(),1);
+        let _ = result.save("result.jpeg");
+        let fer = rusty_tesseract::Image::from_dynamic_image(&result).unwrap();
+        let default_args = rusty_tesseract::Args::default();
+        let output = rusty_tesseract::image_to_string(&fer, &default_args).unwrap();
+        fs::write("edit.txt", output).expect("Should be able to write to `/foo/tmp`");
+        
 
-        // let client = Client::with_uri_str(env::var("MONGODB_URI").unwrap().as_str())
-        //     .await
-        //     .unwrap();
-        // let image_client: mongodb::Collection<Image> = client.database(env::var("MONGODB_DB").unwrap().as_str()).collection("images");
-        // let res = image_client.insert_one(Image{ file_name: Uuid::new_v4().to_string(), created: Utc::now()}).await;
+        //original
+        let dynamic_image: DynamicImage = ImageReader::open("Scan 18.jpeg".to_string())
+            .unwrap()
+            .with_guessed_format().unwrap().decode().unwrap();
+        let img = rusty_tesseract::Image::from_dynamic_image(&dynamic_image).unwrap();
+        let default_args = rusty_tesseract::Args::default();
+        let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
+        fs::write("original.txt", output).expect("Should be able to write to `/foo/tmp`");
 
-        // println!("{}", args.file);
-        // let test = mongo::MongoConnection::get_collection("Entries");
-        // println!("{}", args.file);
-        // let wow = test
-        //     .client()
-        //     .await
-        //     .unwrap()
-        //     .find_one(doc! {})
-        //     .await
-        //     .unwrap();
-        // println!("{}", args.file);
 
-        // println!("{:?}", wow);
     }
 }
