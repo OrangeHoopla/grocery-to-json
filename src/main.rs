@@ -5,7 +5,7 @@ use clap::Parser;
 use grocery_to_json::{
     api, image_processors::sobel_transform,
 };
-use image::{DynamicImage, ImageReader};
+use image::{DynamicImage, ImageDecoder, ImageReader};
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 
 #[derive(Parser, Debug)]
@@ -48,7 +48,9 @@ async fn main() {
     else {
 
         //edit
-        let result = sobel_transform::process_frame("Scan 18.jpeg".to_string(),"result.jpeg".to_string(),1);
+        let mut result = sobel_transform::process_frame("IMG_5718.jpg".to_string(),"result.jpeg".to_string(),1);
+        // println!("{}:{}",result.width(),result.height());
+        result = result.rotate90();//needed for camera photo
         let _ = result.save("result.jpeg");
         let fer = rusty_tesseract::Image::from_dynamic_image(&result).unwrap();
         let default_args = rusty_tesseract::Args::default();
@@ -57,9 +59,15 @@ async fn main() {
         
 
         //original
-        let dynamic_image: DynamicImage = ImageReader::open("Scan 18.jpeg".to_string())
-            .unwrap()
-            .with_guessed_format().unwrap().decode().unwrap();
+        let mut decoder = ImageReader::open("IMG_5718.jpg").unwrap().into_decoder().unwrap();
+        let orientation = decoder.orientation().unwrap();
+        let mut dynamic_image = DynamicImage::from_decoder(decoder).unwrap();
+        dynamic_image.apply_orientation(orientation);
+        // let mut dynamic_image: DynamicImage = ImageReader::open("IMG_5718.jpg".to_string())
+        //     .unwrap()
+        //     .with_guessed_format().unwrap().decode().unwrap();
+        
+        dynamic_image = dynamic_image.rotate90();//needed for camera photo
         let img = rusty_tesseract::Image::from_dynamic_image(&dynamic_image).unwrap();
         let default_args = rusty_tesseract::Args::default();
         let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();

@@ -9,7 +9,7 @@ use chrono::Utc;
 use serde_json::{json, Value};
 use std::fs;
 use uuid::Uuid;
-use crate::{dao::{image_dao::Image, raw_text_dao::RawText, reciept_dao::Reciept}, image_processors::tesseract_processor, text_processors::{self, generic_processor::{self, GenericProcessor}}};
+use crate::{dao::{image_dao::Image, raw_text_dao::RawText, reciept_dao::Reciept}, image_processors::tesseract_processor, text_processors::{generic_processor::{GenericProcessor}}};
 
 
 pub fn get_routes() -> Router {

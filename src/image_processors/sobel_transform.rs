@@ -39,7 +39,7 @@ fn sigma(width: u32, height: u32, blur_modifier: i32) -> f32
     return (((width * height) as f32) / 3630000.0) * blur_modifier as f32;
 }
 
-pub fn process_frame(path: String, _output_path: String, blur_modifier: i32) -> DynamicImage
+pub fn process_frame(path: String, _output_path: String, _blur_modifier: i32) -> DynamicImage
 {
     let source = image::open(path).unwrap().to_luma8();
     // let (width, height) = source.dimensions();
