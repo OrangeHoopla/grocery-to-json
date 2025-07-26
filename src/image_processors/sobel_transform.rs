@@ -1,4 +1,4 @@
-use image::{DynamicImage, GenericImageView, ImageBuffer, Luma};
+use image::{DynamicImage, GenericImageView, ImageBuffer, ImageReader, Luma};
 
 fn sobel(input: &ImageBuffer<Luma<u8>, Vec<u8>>) -> ImageBuffer<Luma<u8>, Vec<u8>>
 {
@@ -41,7 +41,10 @@ fn sigma(width: u32, height: u32, blur_modifier: i32) -> f32
 
 pub fn process_frame(path: String, _output_path: String, _blur_modifier: i32) -> DynamicImage
 {
-    let source = image::open(path).unwrap().to_luma8();
+    let source = ImageReader::open(path)
+    .unwrap()
+    .with_guessed_format()
+    .unwrap().decode().unwrap().to_luma8();
     // let (width, height) = source.dimensions();
     // let sigma = sigma(width, height, blur_modifier);
     // let gaussed = source.blur(sigma);

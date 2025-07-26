@@ -48,7 +48,7 @@ async fn main() {
     else {
 
         //edit
-        let mut result = sobel_transform::process_frame("IMG_5718.jpg".to_string(),"result.jpeg".to_string(),1);
+        let mut result = sobel_transform::process_frame("test_image".to_string(),"result.jpeg".to_string(),1);
         // println!("{}:{}",result.width(),result.height());
         result = result.rotate90();//needed for camera photo
         let _ = result.save("result.jpeg");
@@ -59,10 +59,12 @@ async fn main() {
         
 
         //original
-        let mut decoder = ImageReader::open("IMG_5718.jpg").unwrap().into_decoder().unwrap();
+        let mut decoder = ImageReader::open("test_image").unwrap()
+        .with_guessed_format().unwrap().into_decoder().unwrap();
         let orientation = decoder.orientation().unwrap();
         let mut dynamic_image = DynamicImage::from_decoder(decoder).unwrap();
         dynamic_image.apply_orientation(orientation);
+        
         // let mut dynamic_image: DynamicImage = ImageReader::open("IMG_5718.jpg".to_string())
         //     .unwrap()
         //     .with_guessed_format().unwrap().decode().unwrap();
