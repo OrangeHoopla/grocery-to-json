@@ -48,9 +48,8 @@ async fn main() {
     else {
 
         //edit
-        let mut result = sobel_transform::process_frame("test_image".to_string(),"result.jpeg".to_string(),1);
-        // println!("{}:{}",result.width(),result.height());
-        result = result.rotate90();//needed for camera photo
+        let result = sobel_transform::process_frame("test_image.jpeg".to_string(),"result.jpeg".to_string(),1);
+
         let _ = result.save("result.jpeg");
         let fer = rusty_tesseract::Image::from_dynamic_image(&result).unwrap();
         let default_args = rusty_tesseract::Args::default();
@@ -59,17 +58,12 @@ async fn main() {
         
 
         //original
-        let mut decoder = ImageReader::open("test_image").unwrap()
+        let mut decoder = ImageReader::open("test_image.jpeg").unwrap()
         .with_guessed_format().unwrap().into_decoder().unwrap();
         let orientation = decoder.orientation().unwrap();
         let mut dynamic_image = DynamicImage::from_decoder(decoder).unwrap();
         dynamic_image.apply_orientation(orientation);
-        
-        // let mut dynamic_image: DynamicImage = ImageReader::open("IMG_5718.jpg".to_string())
-        //     .unwrap()
-        //     .with_guessed_format().unwrap().decode().unwrap();
-        
-        dynamic_image = dynamic_image.rotate90();//needed for camera photo
+
         let img = rusty_tesseract::Image::from_dynamic_image(&dynamic_image).unwrap();
         let default_args = rusty_tesseract::Args::default();
         let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
