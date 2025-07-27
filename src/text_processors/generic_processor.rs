@@ -18,14 +18,20 @@ impl GenericProcessor {
     fn get_address(&self,raw_reciept: String) -> String {
         let re_address =
         Regex::new(r"MARKET[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)").unwrap();
-        let addr = re_address.captures(&raw_reciept).unwrap();
-        let mut address = addr[1].to_owned();
+        let addr = re_address.captures(&raw_reciept);
+
+        if addr.is_some() {
+        let safe_addr = addr.unwrap();
+        let mut address = safe_addr[1].to_owned();
         address.push(' ');
-        address.push_str(&addr[2]);
+        address.push_str(&safe_addr[2]);
         address.push(' ');
-        address.push_str(&addr[3]);
-        
-        address
+        address.push_str(&safe_addr[3]);
+        return address;
+        }
+        else {
+            return "".to_owned();
+        }
     }
 
     fn _get_time_of_purchase(&self) -> chrono::DateTime<chrono::Utc> {

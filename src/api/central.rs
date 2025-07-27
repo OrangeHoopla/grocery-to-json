@@ -138,7 +138,8 @@ Takes in id of uploaded file for it to be proccessed
  * Gets String Id and returns JSON either existing entry in Db
  * or parses it with if needed then saves entry
  */
-async fn submit_entry(Path(id): Path<String>) -> Json<Reciept> {
+async fn submit_entry(Path(id): Path<String>, headers: HeaderMap) -> Json<Reciept> {
+
 
     let result = tesseract_processor::result(id);
 
@@ -153,6 +154,8 @@ async fn submit_entry(Path(id): Path<String>) -> Json<Reciept> {
         created: Utc::now(),
         image_processor: "tesseract_processor".to_owned(),
     };
+    let head = headers.get("StoreProcessor").unwrap().to_str().unwrap();
+    println!("{}",head);
 
     let data = GenericProcessor { raw_text: temp };
     RawText::save(gret).await;
