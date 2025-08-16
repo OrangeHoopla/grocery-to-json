@@ -1,2 +1,5 @@
 target/*
 .cargo/
+*.jpg
+*.jpeg
+*.png

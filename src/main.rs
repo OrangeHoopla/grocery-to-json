@@ -48,7 +48,7 @@ async fn main() {
     else {
 
         //edit
-        let result = sobel_transform::process_frame("test_image.jpeg".to_string(),"result.jpeg".to_string(),1);
+        let result = sobel_transform::process_frame("IMG_5722.jpg".to_string(),"result.jpeg".to_string(),1);
 
         let _ = result.save("result.jpeg");
         let fer = rusty_tesseract::Image::from_dynamic_image(&result).unwrap();
@@ -58,7 +58,7 @@ async fn main() {
         
 
         //original
-        let mut decoder = ImageReader::open("test_image.jpeg").unwrap()
+        let mut decoder = ImageReader::open("IMG_5722.jpg").unwrap()
         .with_guessed_format().unwrap().into_decoder().unwrap();
         let orientation = decoder.orientation().unwrap();
         let mut dynamic_image = DynamicImage::from_decoder(decoder).unwrap();

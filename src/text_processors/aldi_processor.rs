@@ -41,7 +41,7 @@ impl AldiProcessor {
     }
 
     fn get_total_cost(&self, raw_text: String) -> f64 {
-        let re_total = Regex::new(r"Total.*:.*\$([0-9\.]+)").unwrap();
+        let re_total = Regex::new(r"AMOUNT DUE ([0-9\.]+)").unwrap();
         let re_address =
         Regex::new(r"MARKET[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)").unwrap(); // this needs to be fixed
         let total = re_total.captures(&raw_text);
