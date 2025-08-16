@@ -54,11 +54,11 @@ impl AldiProcessor {
     }
 
     fn get_items(&self, raw_text: String) -> Vec<Item> {
-        let re = Regex::new(r"(?m)^(.*) \$([0-9\.]+).*[F\|JT]\s").unwrap();
+        let re = Regex::new(r"[0-9]{6,7} (.*)").unwrap();
         let mut items: Vec<Item> = Vec::new();
         for cap in re.captures_iter(&raw_text) {
             items.push(Item { name: cap[1].to_owned(), 
-                              cost: cap[2].parse::<f64>().unwrap_or(0.0) });
+                              cost: 0.0 });
             
         }
 
