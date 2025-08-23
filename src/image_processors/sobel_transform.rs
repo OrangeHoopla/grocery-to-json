@@ -34,7 +34,7 @@ fn sobel(input: &ImageBuffer<Luma<u8>, Vec<u8>>) -> ImageBuffer<Luma<u8>, Vec<u8
     return buff;
 }
 
-fn sigma(width: u32, height: u32, blur_modifier: i32) -> f32
+fn sigma(width: u32, height: u32, _blur_modifier: i32) -> f32
 {
     return (((width * height) as f32) / 3630000.0) * 0.001 as f32;
 }
