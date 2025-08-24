@@ -1,3 +1,5 @@
+use grocery_to_json::image_processors::sobel_transform;
+
 fn main() {
     // Run registered benchmarks.
     divan::main();
@@ -13,8 +15,9 @@ fn fibonacci(n: u64) -> u64 {
     }
 }
 
+#[divan::bench]
 fn it_adds_two() {
-    // let result = sobel_transform::process_frame("IMG_5722.jpg".to_string(),"result.jpeg".to_string(),1);
+    let _result = sobel_transform::process_frame("images/IMG_5722.jpg".to_string(),"result.jpeg".to_string(),1);
 
     // let _ = result.save("result.jpeg");
     // let fer = rusty_tesseract::Image::from_dynamic_image(&result).unwrap();
