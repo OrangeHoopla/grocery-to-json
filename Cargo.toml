@@ -19,6 +19,7 @@ serde = { version = "1.0.204", features = ["derive"] }
 tower-http = { version = "0.6.2", features = ["cors", "trace"] }
 config = "0.15.11"
 divan = "0.1.21"
+axum-test = "17.2.0"
 
 [env]
 MONGODB_URI = "value"

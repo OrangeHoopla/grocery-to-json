@@ -27,30 +27,33 @@ async fn handler() -> Html<&'static str> {
     // read_html_from_file("index.html").await.unwrap_or_else(|_| {
     //     "<h1>Error loading HTML file</h1>".to_string()
     // });
-    Html(
-        r#"
-        <!doctype html>
-        <html>
-            <head>
-                <title>Upload something!</title>
-            </head>
-            <body>
-                <form action="/api/upload" method="post" enctype="multipart/form-data">
-                    <div>
-                        <label>
-                            Upload file:
-                            <input type="file" name="file" multiple>
-                        </label>
-                    </div>
 
-                    <div>
-                        <input type="submit" value="Upload files">
-                    </div>
-                </form>
-            </body>
-        </html>
-        "#,
-    )
+    // Html(
+    //     r#"
+    //     <!doctype html>
+    //     <html>
+    //         <head>
+    //             <title>Upload something!</title>
+    //         </head>
+    //         <body>
+    //             <form action="/api/upload" method="post" enctype="multipart/form-data">
+    //                 <div>
+    //                     <label>
+    //                         Upload file:
+    //                         <input type="file" name="file" multiple>
+    //                     </label>
+    //                 </div>
+
+    //                 <div>
+    //                     <input type="submit" value="Upload files">
+    //                 </div>
+    //             </form>
+    //         </body>
+    //     </html>
+    //     "#,
+    // )
+
+    Html("hello")
 }
 
 /*

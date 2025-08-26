@@ -4,6 +4,14 @@ use chrono::{DateTime, Utc};
 use mongodb::Client;
 use serde::{Deserialize, Serialize};
 
+
+#[allow(dead_code)]
+enum DataAccessError {
+    NotFound,
+    ParsingError,
+    UnknownError
+}
+
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct Image {
     pub file_name: String,
@@ -19,5 +27,17 @@ impl Image {
             client.database("groclog").collection("images");
 
         let _ = image_client.insert_one(image).await;
+    }
+}
+
+struct ImagesRepository ();
+
+impl ImagesRepository {
+    async fn _save(&self, _id: &str) {
+        todo!();
+    }
+
+    async fn _load(&self, _id: &str) {
+        todo!();
     }
 }
