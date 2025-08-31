@@ -14,33 +14,10 @@ struct Args {
     file: String,
 }
 
-const PORT: &str = "8000";
-const ADDRESS: &str = "0.0.0.0";
 
 #[tokio::main]
 async fn main() {
-    divan::main();
-    let args: Args = Args::parse();
 
-    // run as server
-    
-    if args.server {
-        println!("Server Starting...");
-        let app = Router::new()
-            .nest_service("/api", api::central::get_routes())
-            .layer(DefaultBodyLimit::max(1000000000))
-            .layer(CorsLayer::permissive())
-            .layer(TraceLayer::new_for_http());
-
-        let listener = tokio::net::TcpListener::bind(format!("{}:{}", ADDRESS, PORT))
-            .await
-            .unwrap();
-
-        axum::serve(listener, app).await.unwrap();
-
-    }
-    // TODO run against single file
-    else {
 
         // needs to become just regular way to run in terminal
         //edit
@@ -54,17 +31,17 @@ async fn main() {
         
 
         // //original
-        // let mut decoder = ImageReader::open("IMG_5722.jpg").unwrap()
-        // .with_guessed_format().unwrap().into_decoder().unwrap();
-        // let orientation = decoder.orientation().unwrap();
-        // let mut dynamic_image = DynamicImage::from_decoder(decoder).unwrap();
-        // dynamic_image.apply_orientation(orientation);
+        let mut decoder = ImageReader::open("IMG_5722.jpg").unwrap()
+        .with_guessed_format().unwrap().into_decoder().unwrap();
+        let orientation = decoder.orientation().unwrap();
+        let mut dynamic_image = DynamicImage::from_decoder(decoder).unwrap();
+        dynamic_image.apply_orientation(orientation);
 
-        // let img = rusty_tesseract::Image::from_dynamic_image(&dynamic_image).unwrap();
-        // let default_args = rusty_tesseract::Args::default();
-        // let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
-        // fs::write("original.txt", output).expect("Should be able to write to `/foo/tmp`");
+        let img = rusty_tesseract::Image::from_dynamic_image(&dynamic_image).unwrap();
+        let default_args = rusty_tesseract::Args::default();
+        let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
+        fs::write("original.txt", output).expect("Should be able to write to `/foo/tmp`");
 
 
-    }
+    
 }
