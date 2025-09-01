@@ -27,7 +27,7 @@ fn fibonacci(n: u64) -> u64 {
 #[divan::bench(sample_size = 1,sample_count=1)]
 fn standard(){
 
-        let result = tesseract_processor::result("images/sample.jpg");
+        let result = tesseract_processor::result("../images/sample.jpg");
         let distance = levenshtein(&result,IPHONE_ANSWER);
         println!("levenshtein distance: {}", distance);
     }
