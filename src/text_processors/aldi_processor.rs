@@ -2,10 +2,7 @@ use chrono::Utc;
 use regex::Regex;
 use uuid::Uuid;
 
-use crate::dao::{raw_text_dao::RawText, reciept_dao::{Item, Reciept}};
-
-
-
+use crate::dao::{Item, RawText, Reciept};
 
 
 pub struct AldiProcessor {

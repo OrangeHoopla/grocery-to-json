@@ -8,23 +8,16 @@ description = "Convert images of grocery reciepts to jsons"
 [dependencies]
 clap = { version = "4.5.40", features = ["derive"] }
 rusty-tesseract = "1.1.10"
-image = "0.25.5"
-axum = {version = "0.8.1", features = ["multipart"]}
-tokio = { version = "1.43.0", features = ["full"] }
+image = "0.25.7"
 serde_json = "1.0.138"
 uuid = { version = "1.13.1", features = ["v4"] }
 regex = "1.11.1"
-mongodb = "3.2.1"
 bson = { version = "3.0.0", features = ["chrono-0_4"] }
 chrono = { version = "0.4.39", features = ["serde"] } 
 serde = { version = "1.0.204", features = ["derive"] }
 tower-http = { version = "0.6.2", features = ["cors", "trace"] }
-config = "0.15.11"
+config = "0.15.15"
 divan = "0.1.21"
-axum-test = "18.0.1"
-
-[env]
-MONGODB_URI = "value"
 
 [[bench]]
 name = "image_processors"
