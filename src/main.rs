@@ -16,21 +16,30 @@ struct Args {
 
     #[arg(short='p', long, default_value_t = String::from("GenericProcessor"))]
     imageprocessor: String,
+
+    #[arg(short='o', long, default_value_t = String::from("result.jpg"))]
+    output: String,
 }
 
 fn main() {
         let args: Args = Args::parse();
 
-        let mut decoder = ImageReader::open(args.image).unwrap()
-        .with_guessed_format().unwrap().into_decoder().unwrap();
+        let mut decoder = ImageReader::open(args.image)
+        .expect("Could not find image")
+        .with_guessed_format().unwrap()
+        .into_decoder().unwrap();
+
         let orientation = decoder.orientation().unwrap();
-        let mut dynamic_image = DynamicImage::from_decoder(decoder).unwrap();
+
+        let mut dynamic_image = DynamicImage::
+        from_decoder(decoder).unwrap();
         dynamic_image.apply_orientation(orientation);
 
         let img = rusty_tesseract::Image::from_dynamic_image(&dynamic_image).unwrap();
         let default_args = rusty_tesseract::Args::default();
+        
         let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
-        fs::write("original.txt", output).expect("Should be able to write to `/foo/tmp`");
+        fs::write(args.output, output).expect("Failed to write to designated file");
 
 
     

@@ -6,7 +6,7 @@ pub fn hello() {
     println!("hello");
 }
 
-pub fn result(image: String) -> String {
+pub fn result(image: &str) -> String {
 
     //this should go to generic preproc and pass dynamic image in
     let mut decoder = ImageReader::open(format!("images/{}",image)).unwrap()
