@@ -1,6 +1,8 @@
 use std::fs;
 use image::{DynamicImage, ImageDecoder, ImageReader};
 use clap::Parser;
+use grocery_to_json::dao::TextProcessor;
+use grocery_to_json::dao::ImageProcessor;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -11,11 +13,11 @@ struct Args {
     image: String,
 
     /// Number of times to greet
-    #[arg(short='p', long, default_value_t = String::from("GenericProcessor"))]
-    textprocessor: String,
+    #[arg(short, long, default_value_t, value_enum)]
+    textprocessor: TextProcessor,
 
-    #[arg(short='p', long, default_value_t = String::from("GenericProcessor"))]
-    imageprocessor: String,
+    #[arg(short, long, default_value_t, value_enum)]
+    imageprocessor: ImageProcessor,
 
     #[arg(short='o', long, default_value_t = String::from("result.jpg"))]
     output: String,
@@ -23,6 +25,7 @@ struct Args {
 
 fn main() {
         let args: Args = Args::parse();
+
 
         let mut decoder = ImageReader::open(args.image)
         .expect("Could not find image")
@@ -37,7 +40,7 @@ fn main() {
 
         let img = rusty_tesseract::Image::from_dynamic_image(&dynamic_image).unwrap();
         let default_args = rusty_tesseract::Args::default();
-        
+
         let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
         fs::write(args.output, output).expect("Failed to write to designated file");
 

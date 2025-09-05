@@ -27,13 +27,17 @@ pub struct Reciept {
     pub transaction_date: DateTime<Utc>,
 }
 
-enum TextProcessor {
+#[derive(clap::ValueEnum, Clone, Default, Debug, Serialize)]
+pub enum TextProcessor {
+    #[default]
     GenericProcessor,
     AldiProcessor,
     WholeFoodsProcessor
 }
 
-enum ImageProcessor {
+#[derive(clap::ValueEnum, Clone, Default, Debug, Serialize)]
+pub enum ImageProcessor {
+    #[default]
     GenericProcessor,
     SobelProcessor
 }
