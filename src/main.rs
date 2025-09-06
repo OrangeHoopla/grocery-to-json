@@ -4,6 +4,7 @@ use grocery_to_json::image_processors;
 use clap::Parser;
 use grocery_to_json::dao::TextProcessor;
 use grocery_to_json::dao::ImageProcessor;
+use grocery_to_json::image_processors::hough_transform;
 use grocery_to_json::text_processors;
 
 /// 
@@ -26,12 +27,13 @@ struct Args {
 }
 
 fn main() {
-        let args: Args = Args::parse();
-        let raw_string = get_raw_string(&args);
-        let answer:Reciept = get_reciept_object(&args,raw_string);
-        let v = serde_json::to_string(&answer).unwrap();
 
-        fs::write(args.output, v).expect("Failed to write to designated file");
+    hough_transform::example("images/sample.jpg");
+        // let args: Args = Args::parse();
+        // let raw_string = get_raw_string(&args);
+        // let answer:Reciept = get_reciept_object(&args,raw_string);
+        // let v = serde_json::to_string(&answer).unwrap();
+        // fs::write(args.output, v).expect("Failed to write to designated file");
 
 
 

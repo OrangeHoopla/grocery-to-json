@@ -19,6 +19,7 @@ tower-http = { version = "0.6.2", features = ["cors", "trace"] }
 config = "0.15.15"
 divan = "0.1.21"
 distance = "0.4.0"
+imageproc = "0.25.0"
 
 [[bench]]
 name = "tesseract_bench"
