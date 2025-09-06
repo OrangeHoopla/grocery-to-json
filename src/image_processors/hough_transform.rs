@@ -54,14 +54,14 @@ pub fn example(image: &str) {
 
     // Detect lines using Hough transform
     let options = LineDetectionOptions {
-        vote_threshold: 80,
-        suppression_radius: 30,
+        vote_threshold: 100,
+        suppression_radius: 35,
     };
     let lines: Vec<PolarLine> = detect_lines(&edges, options);
 
     let mut filtered_lines: Vec<PolarLine> = vec![]; 
     lines.clone().iter().for_each(|x | 
-        if x.angle_in_degrees.le(&105) && x.angle_in_degrees.ge(&75) {
+        if x.angle_in_degrees.le(&100) && x.angle_in_degrees.ge(&80) {
             filtered_lines.push(x.clone())
         });
 
