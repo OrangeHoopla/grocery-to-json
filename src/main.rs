@@ -1,11 +1,10 @@
 use std::fs;
 use grocery_to_json::dao::Reciept;
 use grocery_to_json::image_processors;
-use grocery_to_json::text_processors;
-use image::{DynamicImage, ImageDecoder, ImageReader};
 use clap::Parser;
 use grocery_to_json::dao::TextProcessor;
 use grocery_to_json::dao::ImageProcessor;
+use grocery_to_json::text_processors;
 
 /// 
 #[derive(Parser, Debug)]
@@ -51,7 +50,7 @@ fn get_raw_string(args: &Args) -> String{
 fn get_reciept_object(args: &Args, raw_string: String) -> Reciept{
     
     match args.textprocessor {
-        TextProcessor::GenericProcessor => todo!(),
+        TextProcessor::GenericProcessor => text_processors::generic_processor::get_reciept(raw_string),
         TextProcessor::AldiProcessor => todo!(),
         TextProcessor::WholeFoodsProcessor => todo!(),
     }

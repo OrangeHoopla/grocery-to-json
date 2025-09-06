@@ -11,12 +11,12 @@ pub struct GenericProcessor {
     pub raw_text: RawText,
 }
 
-impl GenericProcessor {
-    fn get_store_name(&self) -> String {
+    fn get_store_name() -> String {
         "Whole Foods".to_owned()
     }
 
-    fn get_address(&self,raw_reciept: String) -> String {
+
+    fn get_address(raw_reciept: &str) -> String {
         let re_address =
         Regex::new(r"MARKET[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)").unwrap();
         let addr = re_address.captures(&raw_reciept);
@@ -35,11 +35,12 @@ impl GenericProcessor {
         }
     }
 
-    fn _get_time_of_purchase(&self) -> chrono::DateTime<chrono::Utc> {
+    fn _get_time_of_purchase() -> chrono::DateTime<chrono::Utc> {
         todo!()
     }
 
-    fn get_total_cost(&self, raw_text: String) -> f64 {
+
+    fn get_total_cost(raw_text: &str) -> f64 {
         let re_total = Regex::new(r"Total.*:.*\$([0-9\.]+)").unwrap();
         let re_address =
         Regex::new(r"MARKET[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)[\r\n]+([^\r\n]+)").unwrap(); // this needs to be fixed
@@ -52,7 +53,8 @@ impl GenericProcessor {
         return real_total[1].parse::<f64>().unwrap_or(0.0);
     }
 
-    fn get_items(&self, raw_text: String) -> Vec<Item> {
+
+    fn get_items(raw_text: &str) -> Vec<Item> {
         let re = Regex::new(r"(?m)^(.*) \$([0-9\.]+).*[F\|JT]\s").unwrap();
         let mut items: Vec<Item> = Vec::new();
         for cap in re.captures_iter(&raw_text) {
@@ -60,22 +62,21 @@ impl GenericProcessor {
                               cost: cap[2].parse::<f64>().unwrap_or(0.0) });
             
         }
-
         items
     }
 
-    pub fn get_reciept(&self) -> Reciept {
+
+    pub fn get_reciept(text: String) -> Reciept {
         
         return Reciept {
              _id: Uuid::new_v4(),
-             store: self.get_store_name(),
-             address: self.get_address(self.raw_text.raw_text.clone()),
-             items: self.get_items(self.raw_text.raw_text.clone()),
-             total: self.get_total_cost(self.raw_text.raw_text.clone()),
+             store: get_store_name(),
+             address: get_address(&text),
+             items: get_items(&text),
+             total: get_total_cost(&text),
              created: Utc::now(),
              updated: Utc::now(),
              transaction_date: Utc::now(),
         }
     }
 
-}

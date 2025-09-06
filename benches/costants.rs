@@ -1,5 +1,5 @@
 // from iphone
-const RAW_LARGE_STRING: &str = r#"
+const _RAW_LARGE_STRING: &str = r#"
 ALDI
 Store #15
 801 H ST NE

@@ -1,7 +1,6 @@
-use image::{DynamicImage, ImageDecoder, ImageReader};
 use distance::*;
 
-use grocery_to_json::image_processors::{self, tesseract_processor};
+use grocery_to_json::image_processors::tesseract_processor;
 
 fn main() {
     // Run registered benchmarks.
