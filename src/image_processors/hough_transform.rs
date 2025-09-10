@@ -64,6 +64,7 @@ pub fn example(image: &str) {
         if x.angle_in_degrees.le(&100) && x.angle_in_degrees.ge(&80) {
             filtered_lines.push(x.clone())
         });
+        
 
     
 
