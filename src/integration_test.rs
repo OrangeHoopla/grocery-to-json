@@ -1,12 +1,9 @@
-
-
 #[cfg(test)]
 mod tests {
 
-
     #[test]
     fn test_add() {
-        assert_eq!(4,4);
+        assert_eq!(4, 4);
     }
 
     #[test]
@@ -15,6 +12,6 @@ mod tests {
         for i in 0..1000 {
             x += (i as f64) * 0.12;
         }
-        println!("{}",x);
+        println!("{}", x);
     }
 }

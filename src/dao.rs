@@ -1,12 +1,12 @@
-use serde::{Deserialize, Serialize};
 use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct RawText {
     pub raw_text: String,
     pub created: DateTime<Utc>,
-    pub image_processor: String
+    pub image_processor: String,
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]
@@ -32,12 +32,12 @@ pub enum TextProcessor {
     #[default]
     GenericProcessor,
     AldiProcessor,
-    WholeFoodsProcessor
+    WholeFoodsProcessor,
 }
 
 #[derive(clap::ValueEnum, Clone, Default, Debug, Serialize)]
 pub enum ImageProcessor {
     #[default]
     GenericProcessor,
-    SobelProcessor
+    SobelProcessor,
 }

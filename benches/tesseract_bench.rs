@@ -6,7 +6,7 @@ fn main() {
     // Run registered benchmarks.
     divan::main();
 
-    // right now the bench mark for performance is being used against the 
+    // right now the bench mark for performance is being used against the
     // iphones images scanning capability of the reciept
     // using the Levenshtein distance to determine the performance
     // tldr: lower number = better
@@ -22,14 +22,12 @@ fn fibonacci(n: u64) -> u64 {
     }
 }
 
-
-#[divan::bench(sample_size = 1,sample_count=1)]
-fn standard(){
-
-        let result = tesseract_processor::result("../images/sample.jpg");
-        let distance = levenshtein(&result,IPHONE_ANSWER);
-        println!("levenshtein distance: {}", distance);
-    }
+#[divan::bench(sample_size = 1, sample_count = 1)]
+fn standard() {
+    let result = tesseract_processor::result("../images/sample.jpg");
+    let distance = levenshtein(&result, IPHONE_ANSWER);
+    println!("levenshtein distance: {}", distance);
+}
 
 const IPHONE_ANSWER: &str = r#"
 ALDI
