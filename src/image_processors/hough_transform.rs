@@ -1,10 +1,9 @@
 use std::path::Path;
 
-use image::{open, DynamicImage, GenericImageView, ImageDecoder, ImageReader, Luma, Rgb};
+use image::{DynamicImage, GenericImageView, ImageDecoder, ImageReader, Luma};
 use imageproc::{
     edges::canny,
     hough::{detect_lines, draw_polar_lines, LineDetectionOptions, PolarLine},
-    map::map_pixels,
 };
 
 fn sigma(width: u32, height: u32, blur_modifier: i32) -> f32
@@ -79,7 +78,7 @@ pub fn example(image: &str) {
     //     }
     // });
 
-    let mut angles: Vec<u32> = lines
+    let angles: Vec<u32> = lines
     .iter()
     .map(|x| x.angle_in_degrees)
     .collect();

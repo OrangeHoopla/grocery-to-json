@@ -2,11 +2,8 @@ use chrono::Utc;
 use regex::Regex;
 use uuid::Uuid;
 
-use crate::dao::{Item, RawText, Reciept};
+use crate::dao::{Item, Reciept};
 
-pub struct GenericProcessor {
-    pub raw_text: RawText,
-}
 
 fn get_store_name() -> String {
     "Whole Foods".to_owned()
