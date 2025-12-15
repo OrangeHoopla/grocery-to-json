@@ -1,15 +1,18 @@
 [package]
 name = "grocery-to-json"
 version = "0.0.1"
+rust-version = "1.82.0"
+authors = ["orangehoopla"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
-description = "Convert images of grocery reciepts to jsons"
+description = "Convert images of reciepts to jsons"
+exclude = [".github/*", "examples/*"]
 
 [dependencies]
 clap = { version = "4.5.40", features = ["derive"] }
 rusty-tesseract = "1.1.10"
-image = "0.25.7"
-serde_json = "1.0.138"
+image = "0.25.9"
+serde_json = "1.0.145"
 uuid = { version = "1.13.1", features = ["v4"] }
 regex = "1.11.1"
 bson = { version = "3.0.0", features = ["chrono-0_4"] }
@@ -20,7 +23,3 @@ config = "0.15.15"
 divan = "0.1.21"
 distance = "0.4.0"
 imageproc = "0.25.0"
-
-[[bench]]
-name = "tesseract_bench"
-harness = false
