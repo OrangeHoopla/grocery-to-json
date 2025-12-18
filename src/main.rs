@@ -1,5 +1,5 @@
 use image::ImageReader;
-use grocery_to_json::{reciept::Reciept, tesseract::Tesseract};
+use grocery_to_json::{ reciept::Reciept, tesseract::Tesseract, aldi::Aldi};
 
 
 
@@ -11,9 +11,14 @@ fn main() {
     .unwrap();
 
     test.apply();
-
-
     println!("{}", test.text);
+
+    let wow: Aldi = test.try_into().unwrap();
+    
+    println!("{:?}",wow);
+
+
+    
 
 
     println!("Hello world");
