@@ -14,14 +14,11 @@ fn main() {
     println!("{}", test.text);
 
     let wow: Aldi = test.try_into().unwrap();
-    
     println!("{:?}",wow);
 
 
-    
-
-
-    println!("Hello world");
+    let j = serde_json::to_string(&wow);
+    println!("{}",j.unwrap());
     
 }
 
