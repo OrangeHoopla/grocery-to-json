@@ -2,7 +2,7 @@ use std::fs;
 
 use image::{DynamicImage, ImageDecoder, ImageReader};
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct Reciept {
 
     pub image: DynamicImage,

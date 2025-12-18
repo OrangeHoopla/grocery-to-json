@@ -1,15 +1,21 @@
+use rusty_tesseract::{Args, Image};
 use crate::reciept::Reciept;
 
 
 
-trait Tesseract  {
-    fn quade(&self) -> Self;
+pub trait Tesseract  {
+    fn apply(&mut self);
+
 }
 
 impl Tesseract for Reciept {
-    fn quade(&self) -> Self {
-        println!("Hellow");
 
-        Reciept { image: self.image.clone(), text: "New".to_owned() }
+    fn apply(&mut self) {
+        let img = Image::from_dynamic_image(&self.image).unwrap();
+        let default_args = Args::default();
+        let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
+
+        self.text = output;
+        
     }
 }
