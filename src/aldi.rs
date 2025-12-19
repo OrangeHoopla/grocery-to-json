@@ -1,10 +1,8 @@
-use std::time::Instant;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
+use std::time::Instant;
 
 use crate::reciept::Reciept;
-
-
 
 #[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
 pub struct Item {
@@ -23,13 +21,11 @@ pub struct Aldi {
     #[serde(with = "approx_instant")]
     pub transaction_date: Instant,
     pub items: Vec<Item>,
-
 }
-
 
 impl TryFrom<Reciept> for Aldi {
     type Error = ();
-    
+
     fn try_from(value: Reciept) -> Result<Self, Self::Error> {
         Ok(Aldi::convert(value.text))
     }
@@ -37,16 +33,14 @@ impl TryFrom<Reciept> for Aldi {
 
 impl Aldi {
     fn convert(value: String) -> Aldi {
-
-        Aldi { 
-            location: Self::get_store_name(), 
-            total: Self::get_total_cost(), 
-            created: Instant::now(), 
-            updated: Instant::now(), 
+        Aldi {
+            location: Self::get_store_name(),
+            total: Self::get_total_cost(),
+            created: Instant::now(),
+            updated: Instant::now(),
             transaction_date: Instant::now(),
-            items: Self::get_items(value)
+            items: Self::get_items(value),
         }
-
     }
 
     fn get_store_name() -> String {
@@ -71,14 +65,9 @@ impl Aldi {
     }
 }
 
-
-
-
-
-
 mod approx_instant {
+    use serde::{de::Error, Deserialize, Deserializer, Serialize, Serializer};
     use std::time::{Instant, SystemTime};
-    use serde::{Serialize, Serializer, Deserialize, Deserializer, de::Error};
 
     pub fn serialize<S>(instant: &Instant, serializer: S) -> Result<S::Ok, S::Error>
     where
