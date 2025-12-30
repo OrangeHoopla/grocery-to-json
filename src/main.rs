@@ -9,6 +9,10 @@ fn main() {
 
     test.otsu();
 
+    // let mut binding = test.image.clone();
+    // let answer = imageops::crop(&mut binding, 0, 0, test.image.width()/2, test.image.height()/2);
+    // let _ = answer.to_image().save("crop.png");
+
     let _ = test.image.save("sample.png");
     test.apply();
 
