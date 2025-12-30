@@ -1,11 +1,12 @@
+use chrono::{DateTime, Utc};
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use std::time::Instant;
 
 use crate::reciept::Reciept;
 
 #[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
 pub struct Item {
+    pub id: u64,
     pub name: String,
     pub cost: f64,
 }
@@ -14,12 +15,7 @@ pub struct Item {
 pub struct Aldi {
     pub location: String,
     pub total: f64,
-    #[serde(with = "approx_instant")]
-    pub created: Instant,
-    #[serde(with = "approx_instant")]
-    pub updated: Instant,
-    #[serde(with = "approx_instant")]
-    pub transaction_date: Instant,
+    pub transaction_date: Option<DateTime<Utc>>,
     pub items: Vec<Item>,
 }
 
@@ -36,9 +32,7 @@ impl Aldi {
         Aldi {
             location: Self::get_store_name(),
             total: Self::get_total_cost(),
-            created: Instant::now(),
-            updated: Instant::now(),
-            transaction_date: Instant::now(),
+            transaction_date: Some(Utc::now()),
             items: Self::get_items(value),
         }
     }
@@ -56,38 +50,12 @@ impl Aldi {
         let mut items: Vec<Item> = Vec::new();
         for cap in re.captures_iter(&raw_text) {
             items.push(Item {
+                id: 0,
                 name: cap[1].to_owned(),
                 cost: 0.0,
             });
         }
 
         items
-    }
-}
-
-mod approx_instant {
-    use serde::{de::Error, Deserialize, Deserializer, Serialize, Serializer};
-    use std::time::{Instant, SystemTime};
-
-    pub fn serialize<S>(instant: &Instant, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
-    {
-        let system_now = SystemTime::now();
-        let instant_now = Instant::now();
-        let approx = system_now - (instant_now - *instant);
-        approx.serialize(serializer)
-    }
-
-    pub fn deserialize<'de, D>(deserializer: D) -> Result<Instant, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        let de = SystemTime::deserialize(deserializer)?;
-        let system_now = SystemTime::now();
-        let instant_now = Instant::now();
-        let duration = system_now.duration_since(de).map_err(Error::custom)?;
-        let approx = instant_now - duration;
-        Ok(approx)
     }
 }
