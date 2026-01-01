@@ -1,6 +1,6 @@
 [package]
 name = "grocery-to-json"
-version = "0.0.2"
+version = "0.0.3"
 rust-version = "1.82.0"
 authors = ["orangehoopla"]
 edition = "2021"

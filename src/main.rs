@@ -2,16 +2,11 @@ use grocery_to_json::{aldi::Aldi, imageproc::ImageProc, reciept::Reciept, tesser
 use image::ImageReader;
 
 fn main() {
-    let mut test: Reciept = ImageReader::open("./test5.png")
-        .unwrap()
-        .try_into()
-        .unwrap();
+    let mut test: Reciept = ImageReader::open("./test.jpg").unwrap().try_into().unwrap();
 
-    
     test.crop_gray();
     test.otsu(1);
     let _ = test.image.save("sample.png");
-
 
     test.apply();
     println!("{}", test.text);

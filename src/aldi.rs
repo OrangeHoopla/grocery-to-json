@@ -56,6 +56,7 @@ impl Aldi {
             None => 0.0,
         }
     }
+
     fn get_items(raw_text: &String) -> Vec<Item> {
         let re = Regex::new(r"([0-9]{6,7}) ([^0-9,\n]*) (([0-9,\.]+) [A-Z]+)?").unwrap();
         let mut items: Vec<Item> = Vec::new();
