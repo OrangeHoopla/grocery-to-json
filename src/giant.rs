@@ -4,7 +4,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::reciept::Reciept;
 
-
 #[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
 pub struct Item {
     pub name: String,
@@ -55,8 +54,6 @@ impl Giant {
             },
             None => Utc::now(),
         }
-
-
     }
 
     fn get_total_cost(raw_text: &String) -> f64 {
@@ -80,7 +77,6 @@ impl Giant {
         let mut items: Vec<Item> = Vec::new();
 
         for cap in re.captures_iter(raw_text) {
-
             let item_name = match cap.get(1) {
                 Some(res) => res.as_str(),
                 None => " ",
