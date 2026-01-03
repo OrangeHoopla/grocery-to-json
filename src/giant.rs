@@ -73,7 +73,7 @@ impl Giant {
     }
 
     fn get_items(raw_text: &String) -> Vec<Item> {
-        let re = Regex::new(r"(.*) ([0-9,\.]+) F").unwrap();
+        let re = Regex::new(r"(.*) ([0-9,\.]+) [F,T]").unwrap();
         let mut items: Vec<Item> = Vec::new();
 
         for cap in re.captures_iter(raw_text) {

@@ -4,7 +4,7 @@ use grocery_to_json::{
 use image::ImageReader;
 
 fn main() {
-    let mut test: Reciept = ImageReader::open("./giant.jpg")
+    let mut test: Reciept = ImageReader::open("./giant3.jpeg")
         .unwrap()
         .try_into()
         .unwrap();
