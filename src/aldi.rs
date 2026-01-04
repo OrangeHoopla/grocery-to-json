@@ -47,7 +47,10 @@ impl Aldi {
 
         match caps {
             Some(part) => match part.get(1) {
-                Some(part) => match part.as_str().parse::<f64>() {
+                Some(part) => match part
+                .as_str()
+                .replace(" ", "")
+                .parse::<f64>() {
                     Ok(res) => res,
                     Err(_) => 0.0,
                 },

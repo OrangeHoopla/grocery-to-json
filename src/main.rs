@@ -5,7 +5,7 @@ use image::ImageReader;
 // ./molly.JPEG
 // ./test2.jpg
 fn main() {
-    let mut test: Reciept = ImageReader::open("./molly.JPEG")
+    let mut test: Reciept = ImageReader::open("./test2.jpg")
         .unwrap()
         .try_into()
         .unwrap();
