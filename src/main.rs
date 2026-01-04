@@ -1,10 +1,11 @@
 use grocery_to_json::{
-    aldi::Aldi, giant::Giant, imageproc::ImageProc, reciept::Reciept, tesseract::Tesseract,
+    aldi::Aldi, imageproc::ImageProc, reciept::Reciept, tesseract::Tesseract,
 };
 use image::ImageReader;
-
+// ./molly.JPEG
+// ./test2.jpg
 fn main() {
-    let mut test: Reciept = ImageReader::open("./giant3.jpeg")
+    let mut test: Reciept = ImageReader::open("./molly.JPEG")
         .unwrap()
         .try_into()
         .unwrap();
@@ -16,7 +17,7 @@ fn main() {
     test.apply();
     println!("{}", test.text);
 
-    let wow: Giant = test.try_into().unwrap();
+    let wow: Aldi = test.try_into().unwrap();
     let res = serde_json::to_string_pretty(&wow).unwrap();
     println!("{}", res);
 }

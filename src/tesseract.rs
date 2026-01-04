@@ -8,7 +8,9 @@ pub trait Tesseract {
 impl Tesseract for Reciept {
     fn apply(&mut self) {
         let img = Image::from_dynamic_image(&self.image).unwrap();
-        let default_args = Args::default();
+        let mut default_args = Args::default();
+        default_args.psm = Some(4);
+        // default_args.dpi = Some(550); // should grab tesseracts estimation
         let output = rusty_tesseract::image_to_string(&img, &default_args).unwrap();
 
         self.text = output;
