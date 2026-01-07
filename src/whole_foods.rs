@@ -1,36 +1,19 @@
-use chrono::{DateTime, Utc};
+use chrono::Utc;
 use regex::Regex;
-use serde::{Deserialize, Serialize};
 
-use crate::reciept::Reciept;
+use crate::grocery_list::{GroceryList, Item};
 
 
-#[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
-pub struct Item {
-    pub id: u64,
-    pub name: String,
-    pub cost: f64,
+pub trait WholeFoods {
+    fn convert(value: String) -> GroceryList;
+    fn get_store_name() -> String;
+    fn get_total_cost(raw_text: &String) -> f64;
+    fn get_items(raw_text: &String) -> Vec<Item>;
 }
 
-#[derive(Debug, PartialEq, Clone, Deserialize, Serialize)]
-pub struct WholeFoods {
-    pub location: String,
-    pub total: f64,
-    pub transaction_date: Option<DateTime<Utc>>,
-    pub items: Vec<Item>,
-}
-
-impl TryFrom<Reciept> for WholeFoods {
-    type Error = ();
-
-    fn try_from(value: Reciept) -> Result<Self, Self::Error> {
-        Ok(WholeFoods::convert(value.text))
-    }
-}
-
-impl WholeFoods {
-    fn convert(value: String) -> WholeFoods {
-        WholeFoods {
+impl WholeFoods for GroceryList {
+    fn convert(value: String) -> GroceryList {
+        GroceryList {
             location: Self::get_store_name(),
             total: Self::get_total_cost(&value),
             transaction_date: Some(Utc::now()),

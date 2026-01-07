@@ -1,37 +1,22 @@
 use chrono::{DateTime, NaiveDate, NaiveTime, TimeZone, Utc};
 use regex::Regex;
-use serde::{Deserialize, Serialize};
 
-use crate::reciept::Reciept;
+use crate::grocery_list::{GroceryList, Item};
 
-#[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
-pub struct Item {
-    pub name: String,
-    pub cost: f64,
+pub trait Giant {
+    fn convert(value: String) -> GroceryList;
+    fn get_store_name() -> String;
+    fn get_total_cost(raw_text: &String) -> f64;
+    fn get_items(raw_text: &String) -> Vec<Item>;
+    fn get_transaction_date(raw_text: &String) -> DateTime<Utc>;
 }
 
-#[derive(Debug, PartialEq, Clone, Deserialize, Serialize)]
-pub struct Giant {
-    pub location: String,
-    pub total: f64,
-    pub transaction_date: DateTime<Utc>,
-    pub items: Vec<Item>,
-}
-
-impl TryFrom<Reciept> for Giant {
-    type Error = ();
-
-    fn try_from(value: Reciept) -> Result<Self, Self::Error> {
-        Ok(Giant::convert(value.text))
-    }
-}
-
-impl Giant {
-    fn convert(value: String) -> Giant {
-        Giant {
+impl Giant for GroceryList {
+    fn convert(value: String) -> GroceryList {
+        GroceryList {
             location: Self::get_store_name(),
             total: Self::get_total_cost(&value),
-            transaction_date: Self::get_transaction_date(&value),
+            transaction_date: Some(Self::get_transaction_date(&value)),
             items: Self::get_items(&value),
         }
     }
@@ -91,6 +76,7 @@ impl Giant {
             };
 
             items.push(Item {
+                id: 0,
                 name: item_name.to_owned(),
                 cost: item_cost,
             });

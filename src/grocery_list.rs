@@ -1,7 +1,7 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
-use crate::{aldi::Aldi, reciept::Reciept};
+use crate::{aldi::Aldi, giant::Giant, reciept::Reciept, whole_foods::WholeFoods};
 
 
 #[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
@@ -23,6 +23,7 @@ impl TryFrom<Reciept> for GroceryList {
     type Error = ();
 
     fn try_from(value: Reciept) -> Result<Self, Self::Error> {
-        Ok(GroceryList::convert(value.text))
+        Ok(<GroceryList as Aldi>::convert(value.text))
     }
+
 }
