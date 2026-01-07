@@ -2,34 +2,43 @@ use chrono::{DateTime, Utc};
 use regex::Regex;
 use serde::{Deserialize, Serialize};
 
-use crate::reciept::Reciept;
+use crate::{grocery_list::{GroceryList, Item}, reciept::Reciept};
 
-#[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
-pub struct Item {
-    pub id: u64,
-    pub name: String,
-    pub cost: f64,
+// #[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
+// pub struct Item {
+//     pub id: u64,
+//     pub name: String,
+//     pub cost: f64,
+// }
+
+// #[derive(Debug, PartialEq, Clone, Deserialize, Serialize)]
+// pub struct Aldi {
+//     pub location: String,
+//     pub total: f64,
+//     pub transaction_date: Option<DateTime<Utc>>,
+//     pub items: Vec<Item>,
+// }
+
+
+// impl TryFrom<Reciept> for Aldi {
+//     type Error = ();
+
+//     fn try_from(value: Reciept) -> Result<Self, Self::Error> {
+//         Ok(Aldi::convert(value.text))
+//     }
+// }
+
+pub trait Aldi {
+    fn convert(value: String) -> GroceryList;
+    fn get_store_name() -> String;
+    fn get_total_cost(raw_text: &String) -> f64;
+    fn get_items(raw_text: &String) -> Vec<Item>;
+
 }
 
-#[derive(Debug, PartialEq, Clone, Deserialize, Serialize)]
-pub struct Aldi {
-    pub location: String,
-    pub total: f64,
-    pub transaction_date: Option<DateTime<Utc>>,
-    pub items: Vec<Item>,
-}
-
-impl TryFrom<Reciept> for Aldi {
-    type Error = ();
-
-    fn try_from(value: Reciept) -> Result<Self, Self::Error> {
-        Ok(Aldi::convert(value.text))
-    }
-}
-
-impl Aldi {
-    fn convert(value: String) -> Aldi {
-        Aldi {
+impl Aldi for GroceryList {
+    fn convert(value: String) -> GroceryList {
+        GroceryList {
             location: Self::get_store_name(),
             total: Self::get_total_cost(&value),
             transaction_date: Some(Utc::now()),

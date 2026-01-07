@@ -41,7 +41,7 @@ impl ImageProc for Reciept {
         let gray = self.image.grayscale();
         let otsu = otsu_level(&gray.to_luma8());
         let thres = threshold(&gray.to_luma8(), otsu, ThresholdType::Binary);
-        let morph = grayscale_open(&thres, &Mask::square(3));
+        let morph = grayscale_open(&thres, &Mask::square(4));
 
         let edges = canny(&morph, 50.0, 100.0);
 
