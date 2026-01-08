@@ -3,7 +3,6 @@ use regex::Regex;
 
 use crate::grocery_list::{GroceryList, Item};
 
-
 pub trait WholeFoods {
     fn convert(value: String) -> GroceryList;
     fn get_store_name() -> String;
@@ -31,10 +30,7 @@ impl WholeFoods for GroceryList {
 
         match caps {
             Some(part) => match part.get(1) {
-                Some(part) => match part
-                .as_str()
-                .replace(" ", "")
-                .parse::<f64>() {
+                Some(part) => match part.as_str().replace(" ", "").parse::<f64>() {
                     Ok(res) => res,
                     Err(_) => 0.0,
                 },
@@ -49,7 +45,6 @@ impl WholeFoods for GroceryList {
         let mut items: Vec<Item> = Vec::new();
 
         for cap in re.captures_iter(raw_text) {
-
             let item_name = match cap.get(1) {
                 Some(res) => res.as_str(),
                 None => " ",

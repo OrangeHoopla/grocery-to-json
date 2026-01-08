@@ -1,5 +1,8 @@
 use grocery_to_json::{
-    grocery_list::GroceryList, imageproc::ImageProc, reciept::Reciept, tesseract::Tesseract
+    grocery_list::GroceryList,
+    imageproc::ImageProc,
+    reciept::{Reciept, Store},
+    tesseract::Tesseract,
 };
 use image::ImageReader;
 // ./molly.JPEG
@@ -13,8 +16,9 @@ fn main() {
     test.crop_gray();
     test.otsu(1);
     let _ = test.image.save("sample.png");
-
     test.apply();
+    test.store = Some(Store::Aldi);
+
     println!("{}", test.text);
 
     let wow: GroceryList = test.try_into().unwrap();

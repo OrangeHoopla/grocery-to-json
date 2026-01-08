@@ -1,8 +1,12 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
-use crate::{aldi::Aldi, giant::Giant, reciept::Reciept, whole_foods::WholeFoods};
-
+use crate::{
+    aldi::Aldi,
+    giant::Giant,
+    reciept::{Reciept, Store},
+    whole_foods::WholeFoods,
+};
 
 #[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
 pub struct Item {
@@ -20,10 +24,22 @@ pub struct GroceryList {
 }
 
 impl TryFrom<Reciept> for GroceryList {
-    type Error = ();
+    type Error = String;
 
     fn try_from(value: Reciept) -> Result<Self, Self::Error> {
-        Ok(<GroceryList as Aldi>::convert(value.text))
-    }
+        let mut store = None;
 
+        if value.store.is_none() {
+            store = Some(Store::Aldi);
+        }
+
+        // let store = value.guess_store();
+
+        match store {
+            Some(Store::Aldi) => Ok(<GroceryList as Aldi>::convert(value.text)),
+            Some(Store::WholeFoods) => Ok(<GroceryList as WholeFoods>::convert(value.text)),
+            Some(Store::Giant) => Ok(<GroceryList as Giant>::convert(value.text)),
+            _ => Err("Unknown store type".to_owned()),
+        }
+    }
 }

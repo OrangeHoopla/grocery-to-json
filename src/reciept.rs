@@ -2,8 +2,15 @@ use std::fs;
 
 use image::{DynamicImage, ImageDecoder, ImageReader};
 
+#[derive(Debug, Clone, PartialEq)]
+pub enum Store {
+    Aldi,
+    WholeFoods,
+    Giant,
+}
 #[derive(Debug, PartialEq, Clone)]
 pub struct Reciept {
+    pub store: Option<Store>,
     pub image: DynamicImage,
     pub text: String,
 }
@@ -20,8 +27,15 @@ impl TryFrom<ImageReader<std::io::BufReader<fs::File>>> for Reciept {
         image.apply_orientation(orientation);
 
         Ok(Reciept {
+            store: None,
             image: image,
             text: "".to_owned(),
         })
+    }
+}
+
+impl Reciept {
+    pub fn guess_store(&self) -> Store {
+        Store::Aldi
     }
 }
