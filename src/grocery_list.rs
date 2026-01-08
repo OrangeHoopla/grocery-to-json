@@ -26,20 +26,17 @@ pub struct GroceryList {
 impl TryFrom<Reciept> for GroceryList {
     type Error = String;
 
-    fn try_from(value: Reciept) -> Result<Self, Self::Error> {
-        let mut store = None;
-
+    fn try_from(mut value: Reciept) -> Result<Self, Self::Error> {
+        // Future spot for guessing store type
         if value.store.is_none() {
-            store = Some(Store::Aldi);
+            value.store = Some(Store::Aldi);
         }
 
-        // let store = value.guess_store();
-
-        match store {
+        match value.store {
             Some(Store::Aldi) => Ok(<GroceryList as Aldi>::convert(value.text)),
             Some(Store::WholeFoods) => Ok(<GroceryList as WholeFoods>::convert(value.text)),
             Some(Store::Giant) => Ok(<GroceryList as Giant>::convert(value.text)),
-            _ => Err("Unknown store type".to_owned()),
+            None => Err("Unknown store type".to_owned()),
         }
     }
 }

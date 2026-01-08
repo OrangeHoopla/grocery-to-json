@@ -2,12 +2,6 @@ use std::fs;
 
 use image::{DynamicImage, ImageDecoder, ImageReader};
 
-#[derive(Debug, Clone, PartialEq)]
-pub enum Store {
-    Aldi,
-    WholeFoods,
-    Giant,
-}
 #[derive(Debug, PartialEq, Clone)]
 pub struct Reciept {
     pub store: Option<Store>,
@@ -32,6 +26,13 @@ impl TryFrom<ImageReader<std::io::BufReader<fs::File>>> for Reciept {
             text: "".to_owned(),
         })
     }
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum Store {
+    Aldi,
+    WholeFoods,
+    Giant,
 }
 
 impl Reciept {
