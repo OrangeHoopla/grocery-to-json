@@ -29,13 +29,14 @@ impl TryFrom<Reciept> for GroceryList {
     fn try_from(mut value: Reciept) -> Result<Self, Self::Error> {
         // Future spot for guessing store type
         if value.store.is_none() {
-            value.store = Some(Store::Aldi);
+            value.store = Some(value.guess_store());
         }
 
         match value.store {
             Some(Store::Aldi) => Ok(<GroceryList as Aldi>::convert(value.text)),
-            Some(Store::WholeFoods) => Ok(<GroceryList as WholeFoods>::convert(value.text)),
+            Some(Store::Whole_Foods) => Ok(<GroceryList as WholeFoods>::convert(value.text)),
             Some(Store::Giant) => Ok(<GroceryList as Giant>::convert(value.text)),
+            Some(Store::Trader_Joes) => Ok(<GroceryList as Giant>::convert(value.text)),
             None => Err("Unknown store type".to_owned()),
         }
     }

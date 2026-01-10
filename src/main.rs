@@ -1,14 +1,14 @@
 use grocery_to_json::{
     grocery_list::GroceryList,
     imageproc::ImageProc,
-    reciept::{Reciept, Store},
+    reciept::Reciept,
     tesseract::Tesseract,
 };
 use image::ImageReader;
 // ./molly.JPEG
 // ./test2.jpg
 fn main() {
-    let mut test: Reciept = ImageReader::open("./test2.jpg")
+    let mut test: Reciept = ImageReader::open("./wf2.jpg")
         .unwrap()
         .try_into()
         .unwrap();
@@ -17,7 +17,7 @@ fn main() {
     test.otsu(1);
     let _ = test.image.save("sample.png");
     test.apply();
-    test.store = Some(Store::Aldi);
+    // test.store = Some(Store::Aldi);
 
     println!("{}", test.text);
 
