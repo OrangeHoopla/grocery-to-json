@@ -45,6 +45,7 @@ impl fmt::Display for Store {
 }
 
 impl Reciept {
+
     // should only ever be called when the text field has been placed
     pub fn guess_store(&self) -> Store {
         for variant in vec![
@@ -67,6 +68,7 @@ impl Reciept {
                 return variant;
             }
         }
+        //Should probably throw an error instead of Aldi default
         println!("Failed to Guess Successfully");
         Store::Aldi
     }

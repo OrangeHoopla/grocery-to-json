@@ -1,0 +1,77 @@
+{
+  "location": "Aldi",
+  "total": 48.55,
+  "transaction_date": "1970-01-01T00:00:00Z",
+  "items": [
+    {
+      "id": 356412,
+      "name": "Limes",
+      "cost": 2.39
+    },
+    {
+      "id": 704521,
+      "name": "Gatorlyte",
+      "cost": 0.0
+    },
+    {
+      "id": 384651,
+      "name": "Pasture Raised Egg",
+      "cost": 4.39
+    },
+    {
+      "id": 507537,
+      "name": "Kale Salad Kit",
+      "cost": 3.29
+    },
+    {
+      "id": 344821,
+      "name": "Fresh Guacamole",
+      "cost": 2.99
+    },
+    {
+      "id": 344834,
+      "name": "Cantina Salsa",
+      "cost": 2.29
+    },
+    {
+      "id": 388145,
+      "name": "Org WM Greek Yog",
+      "cost": 6.29
+    },
+    {
+      "id": 366988,
+      "name": "Kettle Chips",
+      "cost": 1.85
+    },
+    {
+      "id": 679181,
+      "name": "Avocado",
+      "cost": 0.0
+    },
+    {
+      "id": 384781,
+      "name": "Cheese Trays",
+      "cost": 4.49
+    },
+    {
+      "id": 400731,
+      "name": "Salami Collection",
+      "cost": 6.29
+    },
+    {
+      "id": 365615,
+      "name": "Tortilla Strips",
+      "cost": 3.79
+    },
+    {
+      "id": 262747,
+      "name": "Bananas LRW",
+      "cost": 1.1
+    },
+    {
+      "id": 343337,
+      "name": "Six Cracker Assort",
+      "cost": 3.79
+    }
+  ]
+}

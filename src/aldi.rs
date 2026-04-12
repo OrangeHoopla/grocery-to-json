@@ -1,4 +1,4 @@
-use chrono::Utc;
+use chrono::{DateTime, Utc};
 use regex::Regex;
 
 use crate::grocery_list::{GroceryList, Item};
@@ -15,7 +15,7 @@ impl Aldi for GroceryList {
         GroceryList {
             location: Self::get_store_name(),
             total: Self::get_total_cost(&value),
-            transaction_date: Some(Utc::now()),
+            transaction_date: Some(DateTime::<Utc>::from_timestamp_secs(0).unwrap()),
             items: Self::get_items(&value),
         }
     }

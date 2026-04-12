@@ -33,11 +33,11 @@ impl Giant for GroceryList {
             Some(part) => match part.get(1) {
                 Some(part) => match NaiveDate::parse_from_str(&part.as_str(), "%d/%m/%y") {
                     Ok(res) => Utc.from_utc_datetime(&res.and_time(NaiveTime::default())),
-                    Err(_) => Utc::now(),
+                    Err(_) => DateTime::<Utc>::from_timestamp_secs(0).unwrap(),
                 },
-                None => Utc::now(),
+                None => DateTime::<Utc>::from_timestamp_secs(0).unwrap(),
             },
-            None => Utc::now(),
+            None => DateTime::<Utc>::from_timestamp_secs(0).unwrap(),
         }
     }
 

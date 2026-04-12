@@ -1,0 +1,32 @@
+{
+  "location": "Whole Foods",
+  "total": 32.25,
+  "transaction_date": "1970-01-01T00:00:00Z",
+  "items": [
+    {
+      "id": 0,
+      "name": "S65WFM GROUND CHICKEN",
+      "cost": 5.99
+    },
+    {
+      "id": 0,
+      "name": "SB5WFM OG FAT FREE MILK",
+      "cost": 7.59
+    },
+    {
+      "id": 0,
+      "name": "LMN HERB RTISRIE CHICKEN",
+      "cost": 8.99
+    },
+    {
+      "id": 0,
+      "name": "SOURDOUGH SLICED",
+      "cost": 5.49
+    },
+    {
+      "id": 0,
+      "name": "HASS AVOCADO 6CT",
+      "cost": 3.29
+    }
+  ]
+}
