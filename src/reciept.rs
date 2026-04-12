@@ -64,7 +64,7 @@ impl Reciept {
             if re.is_match(&self.text) {
                 let mut x = "Guessed its ".to_owned();
                 x.push_str(&variant.to_string());
-                println!("{}", x);
+                // println!("{}", x);
                 return variant;
             }
         }
