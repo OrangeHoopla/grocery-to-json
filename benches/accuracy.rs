@@ -1,8 +1,6 @@
 use std::fs;
 
-use divan::black_box;
-use divan::Bencher;
-use grocery_to_json::{grocery_list::GroceryList, imageproc::ImageProc, reciept::Reciept, tesseract::Tesseract, whole_foods::WholeFoods};
+use grocery_to_json::{grocery_list::GroceryList, imageproc::ImageProc, reciept::Reciept, tesseract::Tesseract};
 use image::ImageReader;
 
 fn main() {
@@ -28,14 +26,6 @@ test.apply();
 let _wow: GroceryList = test.try_into().unwrap();
     
 }
-
-#[divan::bench]
-fn copy_from_slice(bencher: Bencher) {
-    // Input and output buffers get used in the closure.
-    let src = (0..100).collect::<Vec<i32>>();
-    let mut dst = vec![0; src.len()];
-}
-
 
 fn load_image(input_file: &str) -> Reciept 
     {

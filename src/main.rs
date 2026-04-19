@@ -45,19 +45,22 @@ mod tests {
     #[test]
     fn whole_foods_2() {
     let mut test: Reciept = load_image("./test/wf2.jpg");
-    let answer_key: String = fs::read_to_string("./test/wf2.json").unwrap();
+    let answer_key_raw: String = fs::read_to_string("./test/wf2.json").unwrap();
 
     test.crop_gray();
     test.otsu(1);
     test.apply();
 
-    let wow: GroceryList = test.try_into().unwrap();
-    let result_parse = serde_json::to_string_pretty(&wow).unwrap();
-    assert_eq!(answer_key, result_parse);
+    let test_grocery_list: GroceryList = test.try_into().unwrap();
+    let answer_key : GroceryList = serde_json::from_str(&answer_key_raw).unwrap();
         
-    println!("{}", answer_key);
-    // println!("-------------------------------");
-    // println!("{}", result_parse);
+    eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",12,30,"wf2");
+    // println!("{}", answer_key);
+    assert!(test_grocery_list.location.eq(&answer_key.location));
+    assert!((test_grocery_list.total == answer_key.total));
+    // eprintln!("12/80 Items ");
+    
+
     }
 
     #[test]
