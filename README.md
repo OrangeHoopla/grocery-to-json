@@ -30,3 +30,8 @@ cd target/release
 ./grocery-to-json
 
 ```
+
+### Testing
+cargo test --release -- --nocapture
+tests will pass even if not 1-1 perfect but should fail at a certain point
+use the nocapture flag to show the true accuracy

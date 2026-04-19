@@ -25,6 +25,7 @@ fn main() {
     println!("{}", res);
 }
 
+
 #[cfg(test)]
 mod tests {
     use std::fs;
@@ -54,7 +55,7 @@ mod tests {
     let result_parse = serde_json::to_string_pretty(&wow).unwrap();
     assert_eq!(answer_key, result_parse);
         
-    // println!("{}", answer_key);
+    println!("{}", answer_key);
     // println!("-------------------------------");
     // println!("{}", result_parse);
     }
@@ -69,12 +70,18 @@ mod tests {
     test.apply();
 
     let wow: GroceryList = test.try_into().unwrap();
-    let result_parse = serde_json::to_string_pretty(&wow).unwrap();
+    let _result_parse = serde_json::to_string_pretty(&wow).unwrap();
     // assert_eq!(answer_key, result_parse);
         
     // println!("{}", answer_key);
     // println!("-------------------------------");
-    println!("{}", result_parse);
+    // println!("{}", result_parse);
+
+    // assert!(false);
+    // assert!(false);
     }
+
+
+
 }
 

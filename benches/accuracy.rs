@@ -1,6 +1,8 @@
 use std::fs;
 
-use grocery_to_json::{grocery_list::GroceryList, imageproc::ImageProc, reciept::Reciept, tesseract::Tesseract};
+use divan::black_box;
+use divan::Bencher;
+use grocery_to_json::{grocery_list::GroceryList, imageproc::ImageProc, reciept::Reciept, tesseract::Tesseract, whole_foods::WholeFoods};
 use image::ImageReader;
 
 fn main() {
@@ -13,9 +15,12 @@ fn main() {
     sample_count = 1,
     args = ["./test/molly.JPEG"])]
 fn default(input_file: &str) {
+
+let answer_key_raw: String = fs::read_to_string("./test/wf2.json").unwrap();
+let answer_key : GroceryList = serde_json::from_str(&answer_key_raw).unwrap();
+print!("{:?}",answer_key);
+
 let mut test: Reciept = load_image(input_file);
-// let answer_key: String = fs::read_to_string("./test/wf2.json").unwrap();
-// print!("hello ");
 test.crop_gray();
 test.otsu(1);
 test.apply();
@@ -23,6 +28,14 @@ test.apply();
 let _wow: GroceryList = test.try_into().unwrap();
     
 }
+
+#[divan::bench]
+fn copy_from_slice(bencher: Bencher) {
+    // Input and output buffers get used in the closure.
+    let src = (0..100).collect::<Vec<i32>>();
+    let mut dst = vec![0; src.len()];
+}
+
 
 fn load_image(input_file: &str) -> Reciept 
     {
