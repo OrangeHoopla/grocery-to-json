@@ -30,6 +30,8 @@ fn main() {
 mod tests {
     use std::fs;
 
+    use grocery_to_json::grocery_list::Item;
+
     use super::*;
 
     fn load_image(input_file: &str) -> Reciept {
@@ -53,6 +55,8 @@ mod tests {
 
     let test_grocery_list: GroceryList = test.try_into().unwrap();
     let answer_key : GroceryList = serde_json::from_str(&answer_key_raw).unwrap();
+
+    items_test(answer_key.items,test_grocery_list.items);
         
     eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",12,30,"wf2");
     // println!("{}", answer_key);
@@ -82,6 +86,11 @@ mod tests {
 
     // assert!(false);
     // assert!(false);
+    }
+
+
+    fn items_test(_original: Vec<Item>,_test: Vec<Item>) {
+        
     }
 
 
