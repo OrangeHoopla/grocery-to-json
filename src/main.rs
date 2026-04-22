@@ -89,8 +89,12 @@ mod tests {
     }
 
 
-    fn items_test(_original: Vec<Item>,_test: Vec<Item>) {
+    fn items_test(original: Vec<Item>,test: Vec<Item>) {
         
+
+        eprintln!("{}", original.contains(&test.first().unwrap()));
+
+        eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",12,original.len(),"wf2");
     }
 
 
