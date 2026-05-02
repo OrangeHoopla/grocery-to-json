@@ -28,7 +28,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
-    use std::fs;
+    use std::{fs, u64};
 
     use grocery_to_json::grocery_list::Item;
 
@@ -58,7 +58,7 @@ mod tests {
 
     items_test(answer_key.items,test_grocery_list.items);
         
-    eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",12,30,"wf2");
+    // eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",12,30,"wf2");
     // println!("{}", answer_key);
     assert!(test_grocery_list.location.eq(&answer_key.location));
     assert!((test_grocery_list.total == answer_key.total));
@@ -86,15 +86,18 @@ mod tests {
 
     // assert!(false);
     // assert!(false);
+    // ICRA, IROS, CVPR, ECCV, ICCV, CoRL, or RSS
     }
 
 
     fn items_test(original: Vec<Item>,test: Vec<Item>) {
         
+        let mut found: i32 = 0;
 
         eprintln!("{}", original.contains(&test.first().unwrap()));
 
-        eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",12,original.len(),"wf2");
+        eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",found,original.len(),"wf2");
+
     }
 
 
