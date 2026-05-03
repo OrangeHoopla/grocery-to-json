@@ -1,7 +1,7 @@
 use std::{fmt, fs};
-
 use image::{DynamicImage, ImageDecoder, ImageReader};
 use regex::Regex;
+use clap::ValueEnum;
 
 #[derive(Debug, PartialEq, Clone)]
 pub struct Reciept {
@@ -29,7 +29,7 @@ impl TryFrom<ImageReader<std::io::BufReader<fs::File>>> for Reciept {
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, ValueEnum)]
 #[allow(non_camel_case_types)]
 pub enum Store {
     Aldi,

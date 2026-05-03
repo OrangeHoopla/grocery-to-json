@@ -1,28 +1,47 @@
 use grocery_to_json::{
     grocery_list::GroceryList,
     imageproc::ImageProc,
-    reciept::Reciept,
+    reciept::{Reciept, Store},
     tesseract::Tesseract,
 };
+use clap::Parser;
 use image::ImageReader;
 
 fn main() {
-    let mut test: Reciept = ImageReader::open("./wf2.jpg")
+
+    let args = Args::parse();
+
+
+    let mut reciept: Reciept = ImageReader::open(args.file)
         .unwrap()
         .try_into()
         .unwrap();
 
-    test.crop_gray();
-    test.otsu(1);
-    let _ = test.image.save("sample.png");
-    test.apply();
-    // test.store = Some(Store::Aldi);
+    if args.store.is_some() {
+        reciept.store = args.store;
+    }
+    
+    reciept.crop_gray();
+    reciept.otsu(1);
+    reciept.apply();
 
-    println!("{}", test.text);
+    
 
-    let wow: GroceryList = test.try_into().unwrap();
-    let res = serde_json::to_string_pretty(&wow).unwrap();
-    println!("{}", res);
+    let grocery_list: GroceryList = reciept.try_into().unwrap();
+
+    println!("{}", serde_json::to_string_pretty(&grocery_list).unwrap());
+}
+
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    /// file to parse(has to be a png or jpg)
+    #[arg(short, long)]
+    file: String,
+
+    /// If you want to use a single store parser instead of in house guess
+    #[arg(short, long,value_enum)]
+    store: Option<Store>,
 }
 
 
@@ -109,6 +128,7 @@ mod accuracy {
         
         let mut found: i32 = 0;
         let mut price_match: i32 = 0;
+        let mut priced = original.len();
 
         for item in test.iter() {
             let res = original.iter().find(|predicate| predicate.name == item.name);
@@ -118,10 +138,11 @@ mod accuracy {
                     price_match +=1;
                 }
             }
+            else { priced -= 1;}
         }
 
-        eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",found,original.len(),list_name);
-        eprintln!("   \x1b[92m{}/{}\x1b[0m Costs Match {}",price_match,original.len(),list_name);
+        eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",found, original.len(), list_name);
+        eprintln!("   \x1b[92m{}/{}\x1b[0m Costs Match {}",price_match, priced, list_name);
 
     }
 
