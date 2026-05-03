@@ -27,8 +27,8 @@ fn main() {
 
 
 #[cfg(test)]
-mod tests {
-    use std::{fs, u64};
+mod accuracy {
+    use std::fs;
 
     use grocery_to_json::grocery_list::Item;
 
@@ -56,13 +56,11 @@ mod tests {
     let test_grocery_list: GroceryList = test.try_into().unwrap();
     let answer_key : GroceryList = serde_json::from_str(&answer_key_raw).unwrap();
 
-    items_test(answer_key.items,test_grocery_list.items);
+    items_test(answer_key.items,test_grocery_list.items,"wf2");
         
-    // eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",12,30,"wf2");
-    // println!("{}", answer_key);
     assert!(test_grocery_list.location.eq(&answer_key.location));
     assert!((test_grocery_list.total == answer_key.total));
-    // eprintln!("12/80 Items ");
+
     
 
     }
@@ -70,33 +68,60 @@ mod tests {
     #[test]
     fn aldi_1() {
     let mut test: Reciept = load_image("./test/molly.JPEG");
-    // let answer_key: String = fs::read_to_string("./test/wf2.json").unwrap();
+    let answer_key_raw: String = fs::read_to_string("./test/molly.json").unwrap();
 
     test.crop_gray();
     test.otsu(1);
     test.apply();
 
-    let wow: GroceryList = test.try_into().unwrap();
-    let _result_parse = serde_json::to_string_pretty(&wow).unwrap();
-    // assert_eq!(answer_key, result_parse);
-        
-    // println!("{}", answer_key);
-    // println!("-------------------------------");
-    // println!("{}", result_parse);
+    let test_grocery_list: GroceryList = test.try_into().unwrap();
+    let answer_key : GroceryList = serde_json::from_str(&answer_key_raw).unwrap();
 
-    // assert!(false);
-    // assert!(false);
+    items_test(answer_key.items,test_grocery_list.items,"aldi");
+        
+    assert!(test_grocery_list.location.eq(&answer_key.location));
+    assert!((test_grocery_list.total == answer_key.total));
+    // ICRA, IROS, CVPR, ECCV, ICCV, CoRL, or RSS
+    }
+
+    #[test]
+    fn giant_1() {
+    let mut test: Reciept = load_image("./test/giant.jpg");
+    let answer_key_raw: String = fs::read_to_string("./test/giant.json").unwrap();
+
+    test.crop_gray();
+    test.otsu(1);
+    test.apply();
+
+    let test_grocery_list: GroceryList = test.try_into().unwrap();
+    // eprintln!("{}", serde_json::to_string_pretty(&test_grocery_list).unwrap());
+    let answer_key : GroceryList = serde_json::from_str(&answer_key_raw).unwrap();
+
+    items_test(answer_key.items,test_grocery_list.items,"giant");
+        
+    assert!(test_grocery_list.location.eq(&answer_key.location));
+    assert!((test_grocery_list.total == answer_key.total));
     // ICRA, IROS, CVPR, ECCV, ICCV, CoRL, or RSS
     }
 
 
-    fn items_test(original: Vec<Item>,test: Vec<Item>) {
+    fn items_test(original: Vec<Item>,test: Vec<Item>, list_name: &str) {
         
         let mut found: i32 = 0;
+        let mut price_match: i32 = 0;
 
-        eprintln!("{}", original.contains(&test.first().unwrap()));
+        for item in test.iter() {
+            let res = original.iter().find(|predicate| predicate.name == item.name);
+            if res.is_some() {
+                found +=1;
+                if res.unwrap().cost == item.cost {
+                    price_match +=1;
+                }
+            }
+        }
 
-        eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",found,original.len(),"wf2");
+        eprintln!("   \x1b[92m{}/{}\x1b[0m Items Found {}",found,original.len(),list_name);
+        eprintln!("   \x1b[92m{}/{}\x1b[0m Costs Match {}",price_match,original.len(),list_name);
 
     }
 

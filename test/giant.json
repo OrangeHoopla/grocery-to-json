@@ -1,0 +1,27 @@
+{
+  "location": "Giant",
+  "total": 10.89,
+  "transaction_date": "2026-02-01T00:00:00Z",
+  "items": [
+    {
+      "id": 0,
+      "name": "PLSBR HLD FNFT",
+      "cost": 3.59
+    },
+    {
+      "id": 0,
+      "name": "BC WHITE COOK IC",
+      "cost": 4.69
+    },
+    {
+      "id": 0,
+      "name": "BC BLUE SUG DEC",
+      "cost": 2.99
+    },
+    {
+      "id": 0,
+      "name": "BC CK PCH SUGAR",
+      "cost": 4.69
+    }
+  ]
+}

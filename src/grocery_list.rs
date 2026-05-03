@@ -8,7 +8,7 @@ use crate::{
     whole_foods::WholeFoods,
 };
 
-#[derive(Debug, Deserialize, Serialize, Default, Clone, PartialEq)]
+#[derive(Debug, Deserialize, Serialize, Default, Clone)]
 pub struct Item {
     pub id: u64,
     pub name: String,
@@ -39,5 +39,11 @@ impl TryFrom<Reciept> for GroceryList {
             Some(Store::Trader_Joes) => Ok(<GroceryList as Giant>::convert(value.text)),
             None => Err("Unknown store type".to_owned()),
         }
+    }
+}
+
+impl PartialEq for Item {
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name
     }
 }

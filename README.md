@@ -16,6 +16,7 @@ taking images from grocery reciepts and transforming them into json for logging 
 
 - Aldi
 - WholeFoods
+- Giant
 
 ## Usage
 
